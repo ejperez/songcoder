@@ -1,0 +1,59 @@
+@font-face {
+    font-family: 'musisync';
+    src: url('/dist/fonts/musisync.woff') format('woff'), /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */ url('/dist/fonts/musisync.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+}
+
+body {
+    font-family: Times, serif;
+}
+
+.right {
+    text-align: right;
+}
+
+.full-width {
+    width: 100%;
+}
+
+#header td {
+    padding: 5px;
+}
+
+#header #title {
+    margin: 0;
+    padding: 0;
+}
+
+.bar-line {
+    font-family: musisync;
+    font-weight: normal;
+    font-size: 30pt;
+    vertical-align: top;
+    line-height: 20px;
+    width: 1px;
+}
+
+.bar-line-after {
+    text-align: right;
+}
+
+.chord-timing {
+    font-family: musisync;
+    font-size: 18pt;
+    line-height: 15px;
+    white-space: nowrap;
+}
+
+.blank-timing {
+    font-size: 18pt;
+}
+
+.chord {
+    font-weight: bold;
+    font-size: 12pt;
+}
+
+.comment {
+    font-size: 10pt;
+    font-style: italic;
+}
