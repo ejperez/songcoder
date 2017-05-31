@@ -9,11 +9,15 @@ function Song() {
 	this.bpm = null;
 	this.meter = null;
 	this.body = null;
-	
+
 	var flatKeys = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
 	var keys = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
 	var noteNames = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
 	var keysWithFlats = ['F', 'Bb', 'Eb', 'Ab', 'Db', 'Gb'];
+
+	String.prototype.replaceAll = function (search, replacement) {
+		return this.split(search).join(replacement);
+	};
 
 	var transposeNote = function (note, steps, useFlats) {
 		var indexOfKey = keys.indexOf(note);
@@ -136,7 +140,7 @@ function Song() {
 			var measures = line.split('|');
 			measures.forEach(function (value) {
 				var currentBar = {
-					chords: []
+					items: []
 				};
 
 				var items = value.split(' ');
@@ -148,12 +152,12 @@ function Song() {
 					var lastCharacter = value.substr(value.length - 1, 1);
 
 					if (firstCharacter === '[' && lastCharacter === ']') {
-						var label = value.substr(1).substr(0, value.length - 2).replace('_', ' ');
+						var label = value.substr(1).substr(0, value.length - 2).replaceAll('_', ' ');
 
 						if (value.substr(0, 1) === '\'') {
-							currentBar.left_label = label.replace('\'', '');
+							currentBar.left_label = label.replaceAll('\'', '');
 						} else if (value.substr(0, 1) === '"') {
-							currentBar.right_label = label.replace('"', '');
+							currentBar.right_label = label.replaceAll('"', '');
 						} else {
 							currentBar.left_label = label;
 						}
@@ -168,31 +172,31 @@ function Song() {
 					} else if (value.substr(0, 3) === ':]]') {
 						currentBar.after = value;
 					} else if (firstCharacter === '\'') {
-						currentBar.left_comment = value.replace('\'', '').replace('_', ' ');
+						currentBar.left_comment = value.replaceAll('\'', '').replaceAll('_', ' ');
 						lineHasComments = true;
 					} else if (firstCharacter === '"') {
-						currentBar.right_comment = value.replace('"', '').replace('_', ' ');
+						currentBar.right_comment = value.replaceAll('"', '').replaceAll('_', ' ');
 						lineHasComments = true;
 					} else {
 						if (value.indexOf(':') === -1) {
 							if (steps !== 0 || useFlats) {
-								currentBar.chords.push({
+								currentBar.items.push({
 									chord: transposeChord(value, steps, useFlats)
 								});
 							} else {
-								currentBar.chords.push({
+								currentBar.items.push({
 									chord: value
 								});
 							}
 						} else {
 							var splitted = value.split(':');
 							if (steps !== 0 || useFlats) {
-								currentBar.chords.push({
+								currentBar.items.push({
 									chord: transposeChord(splitted[0], steps, useFlats),
 									timing: splitted[1]
 								});
 							} else {
-								currentBar.chords.push({
+								currentBar.items.push({
 									chord: splitted[0],
 									timing: splitted[1]
 								});

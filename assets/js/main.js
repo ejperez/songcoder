@@ -9,6 +9,7 @@
 		songForm.on('submit', function (e) {
 			e.preventDefault();
 			song.parse(source.val(), newKey.val());
+			console.log(song);
 			var rendered = printer.render(song);
 			var newWindow = window.open();
 			newWindow.document.write(rendered);
