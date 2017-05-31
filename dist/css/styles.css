@@ -1,0 +1,68 @@
+textarea#source {
+  font-size: 16px;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+  resize: vertical;
+  background-color: #e0f5fa;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 700px;
+  border: solid 3px #5ECAE3;
+  border-radius: 10px;
+  padding: 10px; }
+
+header {
+  text-align: center; }
+
+body {
+  font-family: Arial, "Bitstream Vera Sans", Helvetica, Verdana, sans-serif; }
+
+form label {
+  color: #F56D56;
+  font-weight: bold; }
+
+form select {
+  border: solid 3px #5ECAE3;
+  border-radius: 10px;
+  padding: 10px; }
+
+form button {
+  background-color: #5ECAE3;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  border: solid 3px #5ECAE3;
+  border-radius: 10px;
+  padding: 10px; }
+
+form button:hover {
+  color: #000;
+  background-color: #89d8eb;
+  border: solid 3px #89d8eb; }
+
+section {
+  margin-top: 20px;
+  border: solid 3px #5ECAE3;
+  border-radius: 10px;
+  padding: 10px; }
+
+table {
+  border: solid 3px #5ECAE3;
+  border-radius: 10px;
+  padding: 10px; }
+
+table td, table th {
+  padding: 10px;
+  border: solid thin #5ECAE3; }
+
+h1, h2 {
+  color: #F56D56; }
+
+pre {
+  background-color: #e0f5fa;
+  padding: 10px;
+  font-size: 14px; }
+
+footer {
+  text-align: center;
+  margin-top: 20px; }
