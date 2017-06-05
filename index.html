@@ -4,7 +4,89 @@
 	<meta charset="UTF-8">
 	<title>Song Coder</title>
 	<link rel="shortcut icon" type="image/png" href="favicon.png"/>
-	<link rel="stylesheet" href="dist/css/styles.min.css"/>
+	<style>
+		textarea#source {
+			font-size: 16px;
+			font-family: "Courier New", monospace;
+			font-weight: 700;
+			resize: vertical;
+			background-color: #e0f5fa;
+			box-sizing: border-box;
+			width: 100%;
+			min-height: 700px;
+			border: solid 3px #5ecae3;
+			border-radius: 10px;
+			padding: 10px
+		}
+
+		header {
+			text-align: center
+		}
+
+		body {
+			font-family: Arial, "Bitstream Vera Sans", Helvetica, Verdana, sans-serif
+		}
+
+		form label {
+			color: #f56d56;
+			font-weight: 700
+		}
+
+		form select {
+			border: solid 3px #5ecae3;
+			border-radius: 10px;
+			padding: 10px
+		}
+
+		form button {
+			background-color: #5ecae3;
+			color: #fff;
+			font-weight: 700;
+			cursor: pointer;
+			border: solid 3px #5ecae3;
+			border-radius: 10px;
+			padding: 10px
+		}
+
+		form button:hover {
+			color: #000;
+			background-color: #89d8eb;
+			border: solid 3px #89d8eb
+		}
+
+		section {
+			margin-top: 20px;
+			border: solid 3px #5ecae3;
+			border-radius: 10px;
+			padding: 10px
+		}
+
+		table {
+			border: solid 3px #5ecae3;
+			border-radius: 10px;
+			padding: 10px
+		}
+
+		table td, table th {
+			padding: 10px;
+			border: solid thin #5ecae3
+		}
+
+		h1, h2 {
+			color: #f56d56
+		}
+
+		pre {
+			background-color: #e0f5fa;
+			padding: 10px;
+			font-size: 14px
+		}
+
+		footer {
+			text-align: center;
+			margin-top: 20px
+		}
+	</style>
 </head>
 <body>
 
@@ -51,7 +133,10 @@ body:
 
 <section>
 	<h1>What is Song Coder?</h1>
-	<p>Song Coder is a chord sheet maker written in Javascript. It uses plain text for describing the music instead of a graphical user interface (GUI), which allows you to write charts faster. It allows you to focus on the actual content of the chord chart instead of how it looks.</p>
+
+	<p>Song Coder is a chord sheet maker written in Javascript. It uses plain text for describing the music instead of a
+		graphical user interface (GUI), which allows you to write charts faster. It allows you to focus on the actual
+		content of the chord chart instead of how it looks.</p>
 
 	<h1>Instructions</h1>
 
@@ -162,7 +247,6 @@ G | D | D | G
 [Intro] [[: G G7 | C Cm | G/D D | G :]]3
 			</pre>
 
-	
 
 	<h2>Note Values</h2>
 
@@ -202,7 +286,6 @@ G | D | D | G
 [Intro] G:4,4,4 G7:4 | C Cm | G/D D | G
 			</pre>
 
-	
 
 	<h2>Rests</h2>
 
@@ -212,7 +295,6 @@ G | D | D | G
 [Intro] r:1 | r:2 r:2 | r:4,4 r:4,4 | r:8,8,8,8 r:4,4
 			</pre>
 
-	
 
 	<h2>Dotted Timing</h2>
 
@@ -222,7 +304,6 @@ G | D | D | G
 [Intro] G:4.,4.,8 | r:4. G:4,4,8
 			</pre>
 
-	
 
 	<h2>Ties</h2>
 
@@ -239,7 +320,6 @@ G | D | D | G
 [Intro] G:4,4,4 G:4 | [[_ x:4 G:4,4,4
 			</pre>
 
-	
 
 	<h2>Comments</h2>
 
