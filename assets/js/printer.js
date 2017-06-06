@@ -24,7 +24,12 @@ function Printer() {
 			'2_': 'hU',
 			'4_': 'qU',
 			'8_': 'eU',
-			'16_': 'sU'
+			'16_': 'sU',
+			'1._': 'w.U',
+			'2._': 'h.U',
+			'4._': 'q.U',
+			'8._': 'e.U',
+			'16._': 's.U'
 		};
 
 		var restsDurationLookup = {
@@ -42,7 +47,12 @@ function Printer() {
 			'2_': 'HU',
 			'4_': 'QU',
 			'8_': 'EU',
-			'16_': 'SU'
+			'16_': 'SU',
+			'1._': 'W.U',
+			'2._': 'H.U',
+			'4._': 'Q.U',
+			'8._': 'E.U',
+			'16._': 'S.U'
 		};
 
 		var html = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">';
