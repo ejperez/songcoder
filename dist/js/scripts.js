@@ -20,6 +20,16 @@ null==d?void 0:d))},attrHooks:{type:{set:function(a,b){if(!o.radioValue&&"radio"
 			newWindow.document.write(rendered);
 			newWindow.document.close();
 		});
+
+		$('.js-toggle-button').on('click', function(e){
+			e.preventDefault();
+
+			// Hide all
+			$($(this).data('parent')).children().hide();
+
+			// Show element
+			$($(this).data('show')).show();
+		});
 	});
 })(jQuery);
 /**
