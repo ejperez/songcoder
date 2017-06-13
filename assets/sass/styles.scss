@@ -134,10 +134,14 @@ $default-font: 'Inconsolata', monospace;
       width: 100%;
       height: 100%;
       display: none;
-      padding: $default-padding + 10px;
       font-family: $default-font;
-      overflow: scroll;
       font-size: 20px;
+      overflow-y: scroll;
+      overflow-x: hidden;
+
+      .content {
+        padding: $default-padding + 10px;
+      }
 
       h1, h2 {
         color: $tertiary-color;
