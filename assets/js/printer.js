@@ -78,6 +78,8 @@ function Printer() {
 			html += '<table cellspacing="0" border="0" style="padding-top: ' + (line.hasLabels ? '20' : '15') + 'px">';
 			html += '<tbody>';
 			html += '<tr>';
+			
+			var lastBarHasRepeat = false;
 
 			line.bars.forEach(function (bar, barIndex) {
 				html += '<td style="vertical-align: top; padding-right: 5px;">';
@@ -116,7 +118,11 @@ function Printer() {
 				if (bar.hasOwnProperty('before')) {
 					html += '<td class="bar-line">' + beforeLookup[bar.before] + '</td>';
 				} else {
-					html += '<td class="bar-line">\\</td>';
+					if (lastBarHasRepeat) {
+						lastBarHasRepeat = false;
+					} else {
+						html += '<td class="bar-line">\\</td>';
+					}
 				}
 
 				html += '<td>';
@@ -172,9 +178,12 @@ function Printer() {
 
 				if (bar.hasOwnProperty('after')) {
 					if (bar.after.substr(0, 3) === ':]]') {
+						
+						lastBarHasRepeat = true;
+						
 						if (bar.after.length > 3) {
 							var times = bar.after.substr(3);
-							html += '<td class="bar-line bar-line-after" style="width: 50px;">}<span style="font-family: Arial; font-size: 12pt"> x ' + times + '</span></td>';
+							html += '<td class="bar-line bar-line-after" style="width: 60px;">}<span style="font-family: Arial; font-size: 12pt"> x ' + times + '</span></td>';
 						} else {
 							html += '<td class="bar-line bar-line-after">}</td>';
 						}

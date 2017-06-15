@@ -33,9 +33,9 @@ body {
     width: 1px;
 }
 
-.bar-line-after {
-    text-align: right;
-}
+.bar-line-after span {
+	vertical-align: middle;
+}	
 
 .chord-timing {
     font-family: musisync;
