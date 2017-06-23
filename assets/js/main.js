@@ -5,25 +5,34 @@
 		var newKey = $('#newKey');
 		var song = new Song();
 		var printer = new Printer();
+		var previewContainer = $('#previewContainer');
+
+		var render = function () {
+			song.parse(source.val(), newKey.val());
+			return printer.render(song);
+		};
+
+		var loadPreview = function () {
+			previewContainer.html('<iframe id="preview"></iframe>');
+			var iframe = document.getElementById('preview');
+			var doc = iframe.contentDocument || iframe.contentWindow.document;
+			doc.write(render());
+			doc.close();
+
+		};
 
 		songForm.on('submit', function (e) {
 			e.preventDefault();
-			song.parse(source.val(), newKey.val());
-			console.log(song);
-			var rendered = printer.render(song);
+
+			var rendered = render();
+
 			var newWindow = window.open();
 			newWindow.document.write(rendered);
 			newWindow.document.close();
 		});
 
-		$('.js-toggle-button').on('click', function(e){
-			e.preventDefault();
+		source.on('keyup paste', debounce(loadPreview, 1000));
 
-			// Hide all
-			$($(this).data('parent')).children().hide();
-
-			// Show element
-			$($(this).data('show')).show();
-		});
+		newKey.on('change', loadPreview);
 	});
 })(jQuery);
