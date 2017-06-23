@@ -92,6 +92,7 @@ function Printer() {
 		var html = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">';
 		html += '<title>' + song.title + ' by ' + song.artists + '</title>';
 		html += '<link rel="stylesheet" href="dist/css/print.min.css"/>';
+		html += '<link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">';
 		html += '</head>';
 		html += '<body>';
 
@@ -109,7 +110,7 @@ function Printer() {
 		html += '</tr></table>';
 
 		song.body.lines.forEach(function (line, lineIndex) {
-			html += '<table cellspacing="0" border="0" style="padding-top: ' + (line.hasLabels ? '20' : '15') + 'px">';
+			html += '<table cellspacing="0" border="0" style="padding-top: ' + (line.hasLabels ? '15' : '10') + 'px">';
 			html += '<tbody>';
 			html += '<tr>';
 			
