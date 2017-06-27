@@ -25,7 +25,7 @@ gulp.task('scripts', function (cb) {
 	);
 });
 
-gulp.task('styles', function (cb) {
+gulp.task('print-styles', function (cb) {
 	pump([
 			gulp.src('assets/css/print.css'),
 			cleanCSS(),
@@ -38,9 +38,9 @@ gulp.task('styles', function (cb) {
 
 gulp.task('sass', function (cb) {
 	pump([
-			gulp.src('assets/sass/*.scss'),
+			gulp.src('assets/sass/*'),
 			sass().on('error', sass.logError),
-			gulp.dest('dist/css'),
+			//gulp.dest('dist/css'),
 			concat('styles.css'),
 			cleanCSS(),
 			rename('styles.min.css'),
@@ -51,5 +51,5 @@ gulp.task('sass', function (cb) {
 });
 
 gulp.task('sass:watch', function () {
-	gulp.watch('assets/sass/*.scss', ['sass']);
+	gulp.watch('assets/sass/*', ['sass']);
 });

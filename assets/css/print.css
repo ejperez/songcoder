@@ -25,7 +25,7 @@ body {
 }
 
 .bar-line {
-    font-family: musisync;
+    font-family: musisync, serif;
     font-weight: normal;
     font-size: 30pt;
     vertical-align: top;
@@ -34,11 +34,11 @@ body {
 }
 
 .bar-line-after span {
-	vertical-align: middle;
-}	
+    vertical-align: middle;
+}
 
 .chord-timing {
-    font-family: musisync;
+    font-family: musisync, serif;
     font-size: 18pt;
     line-height: 15px;
     white-space: nowrap;

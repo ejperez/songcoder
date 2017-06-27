@@ -3,40 +3,27 @@
 <head lang="en">
 	<meta charset="UTF-8">
 	<title>Song Coder</title>
-	<!--<link rel="stylesheet" href="dist/css/styles.min.css"/>-->
-	<link rel="stylesheet" href="assets/css/skeleton.css"/>
 	<link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
-	<style>
-		body {
-			background: #fff url('dist/images/background.jpg') no-repeat center;
-			background-size: cover;
-			background-attachment: fixed;
-		}
-
-		#source {
-			-webkit-box-shadow: 3px 0px 110px -11px rgba(0,0,0,0.75);
-			-moz-box-shadow: 3px 0px 110px -11px rgba(0,0,0,0.75);
-			box-shadow: 3px 0px 110px -11px rgba(0,0,0,0.75);
-			width: 100%
-		}
-	</style>
+	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+	<link rel="stylesheet" href="dist/css/styles.min.css"/>
 </head>
 <body>
 <div class="container">
 
 	<nav class="row">
 		<div class="nine columns">
-			<a href="index.html">Song Coder</a>
+			<span class="brand">Song Coder</span>
+			<span class="description">A chord sheet maker by EJ</span>
 		</div>
-		<div class="three columns">
-			<a href="guide.html" class="button">Read the guide</a>
+		<div class="three columns text-right">
+			<a href="guide.html" class="button" target="_blank">Read the guide</a>
 		</div>
 	</nav>
 
-
-	<form class="row" id="songForm">
-
-		<div class="twelve columns">
+	<div class="row">
+		<form id="songForm">
+			<div class="six columns">
+				<label for="source">Source code </label>
 			<textarea id="source" cols="30" rows="10">
 title:
 artists:
@@ -46,11 +33,8 @@ bpm:100
 meter:4/4
 body:
 </textarea>
-		</div>
 
-		<div class="options">
-			<div class="group">
-				<label class="label" for="newKey">Transpose to</label>
+				<label class="inline" for="newKey">Change key  </label>
 				<select class="select" id="newKey">
 					<option value="" selected></option>
 					<option value="C">C</option>
@@ -72,13 +56,12 @@ body:
 					<option value="B">B</option>
 				</select>
 			</div>
-			<button class="button" type="submit">PRINT</button>
-		</div>
-	</form>
-
-
-	<div class="row">
-		<div id="previewContainer"></div>
+			<div class="six columns">
+				<label>Preview </label>
+				<div id="previewContainer"></div>
+				<div class="text-right"><button class="button" type="submit">Print</button></div>
+			</div>
+		</form>
 	</div>
 </div>
 

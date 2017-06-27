@@ -1,159 +1,65 @@
-$primary-color: #4ABDAC;
-$secondary-color: #F7B733;
-$tertiary-color: #FC4A1A;
-$default-border-width: 3px;
-$default-border-radius: 10px;
-$default-padding: 10px;
-$default-font: 'Inconsolata', monospace;
+// Utility Classes
+.text-right {
+  text-align: right;
+}
 
-@mixin full-screen() {
-  position: fixed;
+.inline {
+  display: inline;
+}
+
+nav {
+  margin-bottom: 10px;
+  line-height: 35px;
+  margin-top: 10px;
+
+  .brand {
+    font-size: 3rem;
+    border-right: solid 1px #000;
+    padding-right: 10px;
+    margin-top: 10px;
+    vertical-align: middle;
+  }
+
+  .description {
+    font-size: 1.2rem;
+    letter-spacing: 5px;
+    padding-left: 10px;
+    vertical-align: middle;
+  }
+}
+
+#songForm {
+  #source {
+    width: 100%;
+    height: 650px;
+    font-family: 'Inconsolata', monospace;
+    font-size: 16px;
+    line-height: 25px;
+    resize: none;
+    outline: none;
+  }
+
+  button {
+    margin-top: 20px;
+  }
+}
+
+#previewContainer {
   width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-}
+  height: 650px;
+  border: solid thin #ccc;
+  border-radius: 3px;
 
-@mixin hover-transition() {
-  transition: background-color 0.2s, color 0.2s;
-
-  &:hover {
-    background-color: $secondary-color;
-    color: #000;
+  #preview {
+    width: 100%;
+    height: 650px;
+    outline: none;
+    border: none;
   }
 }
 
-.container {
-  @include full-screen();
-
-  .sidebar {
-    float: left;
-    width: 10%;
-    height: 100%;
-    background-color: $primary-color;
-
-    .logo {
-      text-align: center;
-    }
-
-    .menu {
-      ul {
-        list-style-type: none;
-        padding: 0;
-        li {
-          font-family: $default-font;
-          a {
-            letter-spacing: 5px;
-            text-align: center;
-            display: block;
-            text-decoration: none;
-            color: #fff;
-            padding: $default-padding;
-            font-size: 30px;
-
-            @include hover-transition();
-
-            transition: padding 0.2s;
-            &:hover {
-              padding-top: $default-padding + 10px;
-              padding-bottom: $default-padding + 10px;
-            }
-          }
-        }
-      }
-    }
-  }
-
-  .workspace {
-    margin-left: 10%;
-    height: 100%;
-    background-color: #fff;
-    width: 90%;
-
-    .form {
-      height: 100%;
-
-      .options {
-        position: fixed;
-        top: 0;
-        right: 20px;
-        padding: $default-padding;
-        text-align: center;
-
-        .button {
-          padding: $default-padding;
-          background-color: $primary-color;
-          border: none;
-          cursor: pointer;
-          font-family: $default-font;
-          font-size: 20px;
-          color: #fff;
-
-          @include hover-transition();
-        }
-
-        .group {
-          display: inline;
-          margin-right: 10px;
-
-          .label {
-            background-color: $primary-color;
-            font-family: $default-font;
-            font-size: 20px;
-            padding: $default-padding;
-          }
-
-          .select {
-            font-family: $default-font;
-            font-size: 20px;
-            padding: 8px;
-            border: solid 1px $primary-color;
-            outline: none;
-            margin-left: -4px;
-          }
-        }
-      }
-
-      textarea {
-        outline: none;
-        width: 100%;
-        height: 100%;
-        box-sizing: border-box;
-        resize: none;
-        font-family: $default-font;
-        font-size: 20px;
-        line-height: 35px;
-        font-weight: bold;
-        padding: 20px;
-        background-color: rgba(255, 255, 255, 0);
-
-      }
-    }
-
-    .help {
-      width: 100%;
-      height: 100%;
-      display: none;
-      font-family: $default-font;
-      font-size: 20px;
-      overflow-y: scroll;
-      overflow-x: hidden;
-
-      .content {
-        padding: $default-padding + 10px;
-      }
-
-      h1, h2 {
-        color: $tertiary-color;
-      }
-
-      pre {
-        background-color: #DDD;
-        padding: $default-padding;
-        font-family: $default-font;
-        line-height: 35px;
-        font-weight: bold;
-      }
-    }
-  }
+pre {
+  background-color: #eee;
+  padding: 10px;
+  border-radius: 3px;
 }
