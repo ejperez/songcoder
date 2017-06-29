@@ -1,0 +1,21 @@
+{
+  "name": "songcoder",
+  "description": "Chord sheet maker",
+  "main": "index.js",
+  "authors": [
+    "EJ Perez"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/ejperez/songcoder",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~3.2.1"
+  }
+}
