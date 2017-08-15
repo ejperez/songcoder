@@ -3,6 +3,8 @@
  */
 function Printer() {
 	this.render = function (song) {
+		var dot = '<span class="dot">.</span>';
+
 		var beforeLookup = {
 			'[[:': '{',
 			'[[': '"',
@@ -15,21 +17,21 @@ function Printer() {
 			'4': 'q',
 			'8': 'e',
 			'16': 's',
-			'1.': 'w.',
-			'2.': 'h.',
-			'4.': 'q.',
-			'8.': 'e.',
-			'16.': 's.',
+			'1.': 'w' + dot,
+			'2.': 'h' + dot,
+			'4.': 'q' + dot,
+			'8.': 'e' + dot,
+			'16.': 's' + dot,
 			'1_': 'wU',
 			'2_': 'hU',
 			'4_': 'qU',
 			'8_': 'eU',
 			'16_': 'sU',
-			'1._': 'w.U',
-			'2._': 'h.U',
-			'4._': 'q.U',
-			'8._': 'e.U',
-			'16._': 's.U'
+			'1._': 'w' + dot + 'U',
+			'2._': 'h' + dot + 'U',
+			'4._': 'q' + dot + 'U',
+			'8._': 'e' + dot + 'U',
+			'16._': 's' + dot + 'U'
 		};
 
 		var restsDurationLookup = {
@@ -38,21 +40,21 @@ function Printer() {
 			'4': 'Q',
 			'8': 'E',
 			'16': 'S',
-			'1.': 'W.',
-			'2.': 'H.',
-			'4.': 'Q.',
-			'8.': 'E.',
-			'16.': 'S.',
+			'1.': 'W' + dot,
+			'2.': 'H' + dot,
+			'4.': 'Q' + dot,
+			'8.': 'E' + dot,
+			'16.': 'S' + dot,
 			'1_': 'WU',
 			'2_': 'HU',
 			'4_': 'QU',
 			'8_': 'EU',
 			'16_': 'SU',
-			'1._': 'W.U',
-			'2._': 'H.U',
-			'4._': 'Q.U',
-			'8._': 'E.U',
-			'16._': 'S.U'
+			'1._': 'W' + dot + 'U',
+			'2._': 'H' + dot + 'U',
+			'4._': 'Q' + dot + 'U',
+			'8._': 'E' + dot + 'U',
+			'16._': 'S' + dot + 'U'
 		};
 
 		var html = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">';
@@ -163,7 +165,7 @@ function Printer() {
 						}
 					}
 
-					html += '<td class="chord-timing">' + timings + '</td>';
+					html += '<td class="chord-timing" border="1">' + timings + '</td>';
 
 					html += '</tr>';
 

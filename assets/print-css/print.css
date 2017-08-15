@@ -44,6 +44,10 @@ body {
     white-space: nowrap;
 }
 
+.chord-timing .dot {
+	margin-left: -4px
+}
+
 .blank-timing {
     font-size: 18pt;
 }
