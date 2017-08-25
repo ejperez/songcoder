@@ -17,20 +17,20 @@ function Printer() {
 			'4': 'q',
 			'8': 'e',
 			'16': 's',
-			'1.': 'w' + dot,
-			'2.': 'h' + dot,
-			'4.': 'q' + dot,
-			'8.': 'e' + dot,
+			'1.': 'R',
+			'2.': 'd',
+			'4.': 'j',
+			'8.': 'i',
 			'16.': 's' + dot,
 			'1_': 'wU',
 			'2_': 'hU',
 			'4_': 'qU',
 			'8_': 'eU',
 			'16_': 'sU',
-			'1._': 'w' + dot + 'U',
-			'2._': 'h' + dot + 'U',
-			'4._': 'q' + dot + 'U',
-			'8._': 'e' + dot + 'U',
+			'1._': 'RU',
+			'2._': 'dU',
+			'4._': 'jU',
+			'8._': 'iU',
 			'16._': 's' + dot + 'U'
 		};
 
@@ -41,9 +41,9 @@ function Printer() {
 			'8': 'E',
 			'16': 'S',
 			'1.': 'W' + dot,
-			'2.': 'H' + dot,
-			'4.': 'Q' + dot,
-			'8.': 'E' + dot,
+			'2.': 'D',
+			'4.': 'J',
+			'8.': 'I',
 			'16.': 'S' + dot,
 			'1_': 'WU',
 			'2_': 'HU',
@@ -51,10 +51,26 @@ function Printer() {
 			'8_': 'EU',
 			'16_': 'SU',
 			'1._': 'W' + dot + 'U',
-			'2._': 'H' + dot + 'U',
-			'4._': 'Q' + dot + 'U',
-			'8._': 'E' + dot + 'U',
+			'2._': 'DU',
+			'4._': 'JU',
+			'8._': 'IU',
 			'16._': 'S' + dot + 'U'
+		};
+
+		var beamsLookup = {
+			'16,16,8': 'M',
+			'16,16': 'N',
+			'16,8.': 'O',
+			'8_3': 'T',
+			'8,8,8,8': 'Y',
+			'8,16,16': 'm',
+			'8,8': 'n',
+			'8.,16': 'o',
+			'4_3': 't',
+			'16,16,16,16': 'y',
+			'8,8,8': '§',
+			'16,16,16': '³',
+			'16,8,16': '¾'
 		};
 
 		var html = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">';
@@ -148,24 +164,32 @@ function Printer() {
 
 					var timings = '';
 					if (item.hasOwnProperty('timing')) {
-						var splittedTimings = item.timing.split(',');
-
-						splittedTimings.forEach(function (timing) {
-							if (item.chord === 'r') {
-								timings += restsDurationLookup[timing];
-							} else {
-								timings += notesDurationLookup[timing];
-							}
-						});
+						if (item.chord !== 'r' && beamsLookup.hasOwnProperty(item.timing)) {
+							timings += beamsLookup[item.timing];
+						} else {
+							var splittedTimings = item.timing.split(',');
+							
+							splittedTimings.forEach(function (timing) {
+								if (item.chord === 'r') {
+									if (restsDurationLookup.hasOwnProperty(timing)) {
+										timings += restsDurationLookup[timing];
+									}						
+								} else {
+									if (notesDurationLookup.hasOwnProperty(timing)) {
+										timings += notesDurationLookup[timing];
+									}
+								}
+							});
+						}						
 					} else {
 						if (item.chord === 'r') {
 							timings = 'W';
-						} else {
-							timings = '&nbsp;';
 						}
 					}
 
-					html += '<td class="chord-timing" border="1">' + timings + '</td>';
+					if (timings !== '') {
+						html += '<td class="chord-timing" border="1">' + timings + '</td>';
+					}					
 
 					html += '</tr>';
 
