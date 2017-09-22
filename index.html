@@ -1,30 +1,41 @@
 <!DOCTYPE html>
 <html>
+
 <head lang="en">
 	<meta charset="UTF-8">
+	<meta name="description" content="Song chord sheet maker">
+	<meta name="author" content="EJ Perez">
+
+	<!-- MOBILE SPECIFICATIONS -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+
 	<title>Song Coder</title>
 	<link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-	<link rel="stylesheet" href="dist/css/styles.min.css"/>
+	<link rel="stylesheet" href="dist/css/styles.min.css" />
 </head>
+
 <body>
-<div class="container">
+	<div class="container">
 
-	<nav class="row">
-		<div class="nine columns">
-			<span class="brand">Song Coder</span>
-			<span class="description">A chord sheet maker by EJ</span>
-		</div>
-		<div class="three columns text-right">
-			<a href="guide.html" class="button" target="_blank">Read the guide</a>
-		</div>
-	</nav>
+		<nav class="row">
+			<div class="nine columns">
+				<span class="brand">Song Coder</span>
+				<span class="description">A chord sheet maker by EJ</span>
+			</div>
+			<div class="three columns text-right">
+				<a href="guide.html" class="button" target="_blank">Read the guide</a>
+			</div>
+		</nav>
 
-	<div class="row">
-		<form id="songForm">
-			<div class="six columns">
-				<label for="source">Source code </label>
-			<textarea id="source" cols="30" rows="10">
+		<div class="row">
+			<form id="songForm">
+				<div class="six columns">
+					<label for="source">Source code </label>
+					<textarea id="source" cols="30" rows="10">
 title:
 artists:
 key:C
@@ -34,8 +45,8 @@ meter:4/4
 body:
 </textarea>
 
-				<label class="inline" for="newKey">Change key  </label>
-				<select class="select" id="newKey">
+					<label class="inline" for="newKey">Change key  </label>
+					<select class="select" id="newKey">
 					<option value="" selected></option>
 					<option value="C">C</option>
 					<option value="C#">C#</option>
@@ -55,16 +66,17 @@ body:
 					<option value="Bb">Bb</option>
 					<option value="B">B</option>
 				</select>
-			</div>
-			<div class="six columns">
-				<label>Preview </label>
-				<div id="previewContainer"></div>
-				<div class="text-right"><button class="button" type="submit">Print</button></div>
-			</div>
-		</form>
+				</div>
+				<div class="six columns">
+					<label>Preview </label>
+					<div id="previewContainer"></div>
+					<div class="text-right"><button class="button" type="submit">Print</button></div>
+				</div>
+			</form>
+		</div>
 	</div>
-</div>
 
-<script src="dist/js/scripts.min.js"></script>
+	<script src="dist/js/scripts.min.js"></script>
 </body>
+
 </html>
