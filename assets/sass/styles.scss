@@ -1,65 +1,42 @@
-// Utility Classes
-.text-right {
-  text-align: right;
+body {
+	font-family: 'Raleway', sans-serif;
 }
 
-.inline {
-  display: inline;
+header {
+	margin-bottom: 10px;
+	line-height: 35px;
+	margin-top: 10px;
+
+	
+	.brand {
+		font-size: 3rem;
+		padding-right: 10px;
+		margin-top: 10px;
+		vertical-align: middle;
+	}
+
+	.divider {
+		border-right: solid 1px #000;
+	}
+
+	.description {
+		font-size: 1.2rem;
+		letter-spacing: 5px;
+		padding-left: 10px;
+		vertical-align: middle;
+	}
 }
 
-nav {
-  margin-bottom: 10px;
-  line-height: 35px;
-  margin-top: 10px;
-
-  .brand {
-    font-size: 3rem;
-    border-right: solid 1px #000;
-    padding-right: 10px;
-    margin-top: 10px;
-    vertical-align: middle;
-  }
-
-  .description {
-    font-size: 1.2rem;
-    letter-spacing: 5px;
-    padding-left: 10px;
-    vertical-align: middle;
-  }
+#source {
+	width: 100%;
+	height: 650px;
+	font-family: 'Inconsolata', monospace;
+	font-size: 16px;
+	line-height: 25px;
+	resize: none;
+	outline: none;
 }
 
-#songForm {
-  #source {
-    width: 100%;
-    height: 650px;
-    font-family: 'Inconsolata', monospace;
-    font-size: 16px;
-    line-height: 25px;
-    resize: none;
-    outline: none;
-  }
-
-  button {
-    margin-top: 20px;
-  }
-}
-
-#previewContainer {
-  width: 100%;
-  height: 650px;
-  border: solid thin #ccc;
-  border-radius: 3px;
-
-  #preview {
-    width: 100%;
-    height: 650px;
-    outline: none;
-    border: none;
-  }
-}
-
-pre {
-  background-color: #eee;
-  padding: 10px;
-  border-radius: 3px;
+.select, .btn-print {
+	margin-top: 20px;
 }

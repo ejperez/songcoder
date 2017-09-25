@@ -1,6 +1,6 @@
 {
 	"name": "Song Coder",
-	"short_name": "songcoder",
+	"short_name": "Song Coder",
 	"lang": "en-US",
 	"start_url": "index.html",
 	"display": "standalone",
@@ -50,7 +50,7 @@
 			"density": "4.0"
 		},
 		{
-			"src": "dist\/images\/song-coder-splash-600x600.jpg",
+			"src": "dist\/images\/song-coder-splash-512x512.jpg",
 			"sizes": "600x600",
 			"type": "image\/jpg"
 		}
