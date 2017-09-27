@@ -76,7 +76,6 @@ function Printer() {
 		var html = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">';
 		html += '<title>' + song.title + ' by ' + song.artists + '</title>';
 		html += '<link rel="stylesheet" href="dist/css/print.min.css"/>';
-		html += '<link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">';
 		html += '</head>';
 		html += '<body>';
 

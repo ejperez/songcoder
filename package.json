@@ -7,18 +7,24 @@
     "jquery": "^3.2.1"
   },
   "devDependencies": {
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.2.1",
     "jshint": "^2.9.5",
     "node-sass": "^4.5.3",
     "uglify-js": "^3.0.21"
   },
   "scripts": {
     "build": "npm run build:js && npm run build:sass && npm run build:print-css",
-    "build:js": "cat assets/js/*.js | uglifyjs --mangle > dist/js/scripts.min.js",
+    "build:js": "cat node_modules/jquery/dist/jquery.slim.min.js node_modules/bootstrap/dist/js/bootstrap.min.js assets/js/*.js | uglifyjs --mangle > dist/js/scripts.min.js",
     "prebuild:js": "npm run lint",
-    "build:sass": "cat assets/sass/*.scss assets/css/*.css | node-sass --output-style compressed > dist/css/styles.min.css",
+    "build:sass": "cp -R node_modules/bootstrap/dist/fonts dist/ | cat node_modules/bootstrap/dist/css/bootstrap.min.css assets/sass/*.scss assets/css/*.css | node-sass --output-style compressed > dist/css/styles.min.css",
     "build:print-css": "cat assets/print-css/*.css | node-sass --output-style compressed > dist/css/print.min.css",
     "lint": "jshint assets/js/*.js || true"
   },
   "author": "EJ Perez",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+	  "url": "https://github.com/ejperez/songcoder.git",
+	  "type": "git"
+  }
 }
