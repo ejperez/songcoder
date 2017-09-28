@@ -51,7 +51,7 @@
 		},
 		{
 			"src": "dist\/images\/song-coder-splash-512x512.jpg",
-			"sizes": "600x600",
+			"sizes": "512x512",
 			"type": "image\/jpg"
 		}
 	]
