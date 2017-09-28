@@ -73,13 +73,7 @@ function Printer() {
 			'16,8,16': '¾'
 		};
 
-		var html = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">';
-		html += '<title>' + song.title + ' by ' + song.artists + '</title>';
-		html += '<link rel="stylesheet" href="dist/css/print.min.css"/>';
-		html += '</head>';
-		html += '<body>';
-
-		html += '<table cellspacing="0" id="header" class="full-width">';
+		var html = '<table cellspacing="0" id="header" class="full-width">';
 		html += '<tr>';
 		html += '<td colspan="4" style="width: 100%;border-bottom:solid thin black">';
 		html += '<h2 id="title">' + song.title + ' - ' + song.artists + '</h2>';
@@ -93,7 +87,7 @@ function Printer() {
 		html += '</tr></table>';
 
 		song.body.lines.forEach(function (line, lineIndex) {
-			html += '<table cellspacing="0" border="0" style="padding-top: ' + (line.hasLabels ? '15' : '10') + 'px">';
+			html += '<table cellspacing="0" border="0" style="margin-top: ' + (line.hasLabels ? '15' : '10') + 'px">';
 			html += '<tbody>';
 			html += '<tr>';
 			
@@ -233,8 +227,6 @@ function Printer() {
 			html += '</tbody>';
 			html += '</table>';
 		});
-
-		html += '</body></html>';
 
 		return html;
 	};

@@ -26,8 +26,10 @@
 		 url('../fonts/inconsolata-v15-latin-regular.svg#Inconsolata') format('svg'); /* Legacy iOS */
 }
 
-body {
-	font-family: 'Raleway', sans-serif;
+@font-face {
+    font-family: 'musisync';
+	src: url('../fonts/musisync.woff') format('woff'), /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+		url('../css/fonts/musisync.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
 }
 
 header {
@@ -55,16 +57,103 @@ header {
 	}
 }
 
-#source {
-	width: 100%;
-	height: 650px;
-	font-family: 'Inconsolata', monospace;
-	font-size: 16px;
-	line-height: 25px;
-	resize: none;
-	outline: none;
+.music {
+	font-family: musisync, serif;			
 }
 
-.select, .btn-print {
-	margin-top: 20px;
+#guide {
+	font-family: 'Raleway', sans-serif;
+}
+
+#editor {
+	font-family: 'Raleway', sans-serif;
+	margin-bottom: 10px;
+
+	#source {
+		width: 100%;
+		height: 650px;
+		font-family: 'Inconsolata', monospace;
+		font-size: 16px;
+		line-height: 25px;
+		resize: none;
+		outline: none;
+	}
+	
+	.select, .btn-print {
+		margin-top: 20px;
+	}
+}
+
+#print {
+	font-family: 'Inconsolata', monospace;	
+
+	.right {
+		text-align: right;
+	}
+	
+	.full-width {
+		width: 100%;
+	}
+	
+	#header td {
+		padding: 5px;
+	}
+	
+	#header #title {
+		margin: 0;
+		padding: 0;
+	}
+	
+	.bar-line {
+		font-family: musisync, serif;
+		font-weight: normal;
+		font-size: 30pt;
+		vertical-align: top;
+		line-height: 20px;
+		width: 1px;
+	}
+	
+	.bar-line-after span {
+		vertical-align: middle;
+	}
+	
+	.chord-timing {
+		font-family: musisync, serif;
+		font-size: 18pt;
+		line-height: 15px;
+		white-space: nowrap;
+	}
+	
+	.chord-timing .dot {
+		margin-left: -4px
+	}
+	
+	.blank-timing {
+		font-size: 18pt;
+	}
+	
+	.chord {
+		font-size: 14pt;
+	}
+	
+	.comment {
+		font-size: 10pt;
+		font-style: italic;
+	}
+}
+
+@media print {
+	#editor {
+		display: none;
+	}	
+
+	#print {
+		display: block;
+	}
+}
+
+@media screen {	
+	#print {
+		display: none;	
+	}	
 }

@@ -6,11 +6,11 @@ toolbox.precache([
 	'index.html',
 	'guide.html',
 	'dist/css/styles.min.css',
-	'dist/css/print.min.css',
-	'dist/js/scripts.min.css',
+	'dist/js/scripts.min.js',
 	'dist/fonts/raleway-v11-latin-regular.woff2',
 	'dist/fonts/inconsolata-v15-latin-regular.woff2',
-	'dist/fonts/musisync.woff'
+	'dist/fonts/musisync.woff',
+	'manifest.json'
 ]);
 	
 // toolbox.router.get('/images/*', toolbox.cacheFirst);

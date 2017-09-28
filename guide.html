@@ -12,7 +12,23 @@
 </head>
 
 <body>
-	<div class="container-fluid">
+	<div id="guide" class="container-fluid">
+
+		<header class="row">
+			<div class="col-sm-9 col-md-9 col-lg-9 hidden-xs">
+				<h1 class="brand">Song Coder <span class="divider"></span> <span class="description">A chord sheet maker by EJ</span></h1>
+			</div>
+			<div class="visible-xs col-xs-12 text-center">
+				<h1 class="brand">Song Coder</h1>
+			</div>
+			<div class="col-sm-3 col-md-3 text-right hidden-xs">
+				<a href="index.html" class="btn btn-default">Go to editor</a>
+			</div>
+			<div class="visible-xs col-xs-12 text-center">
+				<a href="index.html" class="btn btn-default">Go to editor</a>
+			</div>
+		</header>
+
 		<div class="row">
 			<div class="col-md-12">
 				<h1>What is Song Coder?</h1>
@@ -87,7 +103,8 @@ body:
 				<h2>Lines</h2>
 
 				<p>If you want consistency with the count of bars per line (ex. 4 bars per line), we can split up the Verse section to multiple
-					lines.</p>
+					lines.
+				</p>
 
 				<pre class="source">
 [Verse] G | D | D | G
@@ -196,7 +213,8 @@ G | D | D | G
 			</pre>
 
 				<p>To make a tie between two bars, add '[[_' to the bar to the right together with 'x' and the note values. See example
-					below:</p>
+					below:
+				</p>
 
 				<pre class="source">
 [Intro] G:4,4,4 G:4 | [[_ x:4 G:4,4,4
