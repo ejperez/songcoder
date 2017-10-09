@@ -4,6 +4,7 @@ importScripts('sw-toolbox.js');
 
 toolbox.precache([
 	'index.html',
+	'traditional.html',
 	'guide.html',
 	'dist/css/styles.min.css',
 	'dist/js/scripts.min.js',

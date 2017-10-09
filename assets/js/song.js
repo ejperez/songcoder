@@ -2,8 +2,8 @@
  * Created by STOK-Comp3 on 30/05/2017.
  */
 function Song() {
-	this.title = null;
-	this.artists = null;
+	this.title = 'Title';
+	this.artists = 'Artist';
 	this.key = null;
 	this.comment = null;
 	this.bpm = null;
@@ -75,7 +75,7 @@ function Song() {
 		return chord;
 	};
 
-	this.parse = function (source, newKey) {
+	this.parse = function (source, mode, newKey) {
 		var currentSong = this;
 
 		// Split source code lines
@@ -83,9 +83,10 @@ function Song() {
 
 		if (lines.length > 0) {
 			// Map to song object properties
+			var propertyCount = mode === 'traditional' ? 7 : 6;
 
 			lines.forEach(function (value, index) {
-				if (index < 7) {
+				if (index < propertyCount) {
 					var splittedValue = value.split(':');
 					currentSong[splittedValue[0]] = splittedValue[1];
 				} else {
@@ -95,28 +96,30 @@ function Song() {
 		}
 
 		// Parse song body
-		var indexOfKey = keys.indexOf(currentSong.key);
-		if (indexOfKey === -1) {
-			indexOfKey = flatKeys.indexOf(currentSong.key);
-		}
+		if (mode === 'traditional') {
+			var indexOfKey = keys.indexOf(currentSong.key);
+			if (indexOfKey === -1) {
+				indexOfKey = flatKeys.indexOf(currentSong.key);
+			}
 
-		if (newKey === '') {
-			newKey = currentSong.key;
-		}
+			if (newKey === '') {
+				newKey = currentSong.key;
+			}
 
-		var indexOfNewKey = keys.indexOf(newKey);
-		if (indexOfNewKey === -1) {
-			indexOfNewKey = flatKeys.indexOf(newKey);
-		}
+			var indexOfNewKey = keys.indexOf(newKey);
+			if (indexOfNewKey === -1) {
+				indexOfNewKey = flatKeys.indexOf(newKey);
+			}
 
-		// Calculate semitone steps
-		var steps = indexOfNewKey - indexOfKey;
+			// Calculate semitone steps
+			var steps = indexOfNewKey - indexOfKey;
 
-		// Determine if flat notes should be used
-		var useFlats = keysWithFlats.indexOf(newKey) > -1;
+			// Determine if flat notes should be used
+			var useFlats = keysWithFlats.indexOf(newKey) > -1;
 
-		if (steps !== 0 || useFlats) {
-			currentSong.key = transposeNote(currentSong.key, steps, useFlats);
+			if (steps !== 0 || useFlats) {
+				currentSong.key = transposeNote(currentSong.key, steps, useFlats);
+			}
 		}
 
 		var songBodyLines = currentSong.body.trim().split(/\s*[\r\n]+\s*/g);
@@ -138,6 +141,7 @@ function Song() {
 			var lineHasComments = false;
 
 			var measures = line.split('|');
+
 			measures.forEach(function (value) {
 				var currentBar = {
 					items: []
@@ -179,23 +183,36 @@ function Song() {
 						lineHasComments = true;
 					} else {
 						if (value.indexOf(':') === -1) {
-							if (steps !== 0 || useFlats) {
-								currentBar.items.push({
-									chord: transposeChord(value, steps, useFlats)
-								});
-							} else {
+							if (mode === 'traditional') {
+								if (steps !== 0 || useFlats) {
+									currentBar.items.push({
+										chord: transposeChord(value, steps, useFlats)
+									});
+								} else {
+									currentBar.items.push({
+										chord: value
+									});
+								}
+							} else if (mode === 'nashville') {
 								currentBar.items.push({
 									chord: value
 								});
 							}
 						} else {
 							var splitted = value.split(':');
-							if (steps !== 0 || useFlats) {
-								currentBar.items.push({
-									chord: transposeChord(splitted[0], steps, useFlats),
-									timing: splitted[1]
-								});
-							} else {
+							if (mode === 'traditional') {
+								if (steps !== 0 || useFlats) {
+									currentBar.items.push({
+										chord: transposeChord(splitted[0], steps, useFlats),
+										timing: splitted[1]
+									});
+								} else {
+									currentBar.items.push({
+										chord: splitted[0],
+										timing: splitted[1]
+									});
+								}
+							} else if (mode === 'nashville') {
 								currentBar.items.push({
 									chord: splitted[0],
 									timing: splitted[1]
