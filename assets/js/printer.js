@@ -82,7 +82,9 @@ function Printer() {
 		html += '<tr>';
 		html += '<td width="12%">Tempo: ' + song.bpm + '</td>';
 		html += '<td width="12%">Meter: ' + song.meter + '</td>';
-		html += '<td width="10%">Key: ' + song.key + '</td>';
+		if (song.hasOwnProperty('key') && song.key) {
+			html += '<td width="10%">Key: ' + song.key + '</td>';
+		}
 		html += '<td width="56%">' + song.comment + '</td>';
 		html += '</tr></table>';
 
