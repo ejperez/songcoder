@@ -33,7 +33,7 @@
 	<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
 	<meta name="theme-color" content="#ffffff">
 
-	<title>Song Coder | Nashville Mode</title>
+	<title>Song Coder | Traditional Mode</title>
 	<link rel="stylesheet" href="dist/css/styles.min.css" />
 
 	<script>
@@ -63,8 +63,8 @@
 				<h1 class="brand">Song Coder <span class="hidden-sm divider"></span> <span class="hidden-sm description">A chord sheet maker by EJ</span></h1>
 			</div>
 			<div class="col-sm-7 col-md-5 col-lg-5 text-right hidden-xs">
-				<a href="index.html" class="btn btn-primary disabled">Nashville mode</a>
-				<a href="traditional.html" class="btn btn-default">Traditional mode</a>
+				<a href="index.html" class="btn btn-primary disabled">Traditional mode</a>
+				<a href="nashville.html" class="btn btn-default">Nashville mode</a>				
 				<a href="guide.html" class="btn btn-default">Read the guide</a>
 			</div>
 
@@ -72,8 +72,8 @@
 				<h1 class="brand">Song Coder</h1>
 			</div>
 			<div class="visible-xs col-xs-12 text-center">
-				<a href="index.html" class="btn btn-primary disabled">Nashville mode</a>
-				<a href="traditional.html" class="btn btn-default">Traditional mode</a>
+				<a href="index.html" class="btn btn-primary disabled">Traditional mode</a>
+				<a href="nashville.html" class="btn btn-default">Nashville mode</a>				
 				<a href="guide.html" class="btn btn-default">Read the guide</a>
 			</div>
 		</header>
@@ -84,18 +84,39 @@
 				<textarea class="form-control" id="source" name="source" cols="30" rows="10">
 title:
 artists:
+key:C
 comment:
 bpm:100
 meter:4/4
 body:
 </textarea>
+				<select class="form-control select" id="new_key" name="new_key">
+					<option value="" selected>Original key</option>
+					<option value="C">C</option>
+					<option value="C#">C#</option>
+					<option value="Db">Db</option>
+					<option value="D">D</option>
+					<option value="D#">D#</option>
+					<option value="Eb">Eb</option>
+					<option value="E">E</option>
+					<option value="F">F</option>
+					<option value="F#">F#</option>
+					<option value="Gb">Gb</option>
+					<option value="G">G</option>
+					<option value="G#">G#</option>
+					<option value="Ab">Ab</option>
+					<option value="A">A</option>
+					<option value="A#">A#</option>
+					<option value="Bb">Bb</option>
+					<option value="B">B</option>
+				</select>
 				<button class="hidden-xs btn-print btn btn-primary" type="submit">Print</button>
 				<button class="visible-xs btn-print btn btn-warning btn-block" type="submit">Print</button>
 				<p class="text-center">
 					<span class="visible-xs">Print option might not work on mobile devices.</span>
 				</p>
 			</div>
-			<input type="hidden" name="mode" value="nashville">
+			<input type="hidden" name="mode" value="traditional">
 		</form>
 	</div>
 
