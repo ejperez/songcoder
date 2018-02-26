@@ -2,125 +2,119 @@
 <html>
 
 <head lang="en">
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Song chord sheet maker">
-	<meta name="author" content="EJ Perez">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Song chord sheet maker">
+    <meta name="author" content="EJ Perez">
 
-	<!-- MOBILE SPECIFICATIONS -->
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="format-detection" content="telephone=no">
+    <!-- MOBILE SPECIFICATIONS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
 
-	<!-- ICONS -->
-	<link rel="apple-touch-icon" sizes="57x57" href="dist/images/apple-icon-57x57.png">
-	<link rel="apple-touch-icon" sizes="60x60" href="dist/images/apple-icon-60x60.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="dist/images/apple-icon-72x72.png">
-	<link rel="apple-touch-icon" sizes="76x76" href="dist/images/apple-icon-76x76.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="dist/images/apple-icon-114x114.png">
-	<link rel="apple-touch-icon" sizes="120x120" href="dist/images/apple-icon-120x120.png">
-	<link rel="apple-touch-icon" sizes="144x144" href="dist/images/apple-icon-144x144.png">
-	<link rel="apple-touch-icon" sizes="152x152" href="dist/images/apple-icon-152x152.png">
-	<link rel="apple-touch-icon" sizes="180x180" href="dist/images/apple-icon-180x180.png">
-	<link rel="icon" type="image/png" sizes="192x192" href="dist/images/android-icon-192x192.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="dist/images/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="96x96" href="dist/images/favicon-96x96.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="dist/images/favicon-16x16.png">
-	<link rel="manifest" href="manifest.json">
+    <!-- ICONS -->
+    <link rel="apple-touch-icon" sizes="57x57" href="dist/images/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="dist/images/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="dist/images/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="dist/images/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="dist/images/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="dist/images/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="dist/images/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="dist/images/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="dist/images/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="dist/images/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="dist/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="dist/images/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="dist/images/favicon-16x16.png">
+    <link rel="manifest" href="manifest.json">
 
-	<!-- COLORS -->
-	<meta name="msapplication-TileColor" content="#ffffff">
-	<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
-	<meta name="theme-color" content="#ffffff">
+    <!-- COLORS -->
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
 
-	<title>Song Coder | Traditional Mode</title>
-	<link rel="stylesheet" href="dist/css/styles.min.css" />
+    <title>Song Coder | Traditional Mode</title>
+    <link rel="stylesheet" href="dist/css/styles.min.css"/>
 
-	<script>
-		if ('serviceWorker' in navigator) {
-			window.addEventListener('load', function () {
-				navigator.serviceWorker.register('sw.js').then(
-					function (registration) {
-						// Registration was successful
-						console.log('ServiceWorker registration successful with scope: ', registration.scope);
-					},
-					function (err) {
-						// registration failed :( 
-						console.log('ServiceWorker registration failed: ', err);
-					});
-			});
-		}
-	</script>
+    <script>
+        if ( 'serviceWorker' in navigator ) {
+            window.addEventListener( 'load', function () {
+                navigator.serviceWorker.register( 'sw.js' ).then(
+                        function ( registration ) {
+                            // Registration was successful
+                            console.log( 'ServiceWorker registration successful with scope: ', registration.scope );
+                        },
+                        function ( err ) {
+                            // registration failed :(
+                            console.log( 'ServiceWorker registration failed: ', err );
+                        } );
+            } );
+        }
+    </script>
 </head>
 
 <body>
-	<span class="music"></span>
-	<div id="print" class="container-fluid"></div>
-	<div id="editor" class="container-fluid">
+<span class="music"></span>
 
-		<header class="row">
-			<div class="col-sm-5 col-md-7 col-lg-7 hidden-xs">
-				<h1 class="brand">Song Coder <span class="hidden-sm divider"></span> <span class="hidden-sm description">A chord sheet maker by EJ</span></h1>
-			</div>
-			<div class="col-sm-7 col-md-5 col-lg-5 text-right hidden-xs">
-				<a href="index.html" class="btn btn-primary disabled">Traditional mode</a>
-				<a href="nashville.html" class="btn btn-default">Nashville mode</a>				
-				<a href="guide.html" class="btn btn-default">Read the guide</a>
-			</div>
+<div id="app" class="container-fluid">
 
-			<div class="visible-xs col-xs-12 text-center">
-				<h1 class="brand">Song Coder</h1>
-			</div>
-			<div class="visible-xs col-xs-12 text-center">
-				<a href="index.html" class="btn btn-primary disabled">Traditional mode</a>
-				<a href="nashville.html" class="btn btn-default">Nashville mode</a>				
-				<a href="guide.html" class="btn btn-default">Read the guide</a>
-			</div>
-		</header>
+    <div class="row">
+        <div class="col-md-12 song-container">
+            <h1 class="song-title">Song Title <span>- Song Artist</span></h1>
 
-		<form id="songForm" class="form form-inline">
-			<div class="col-lg-12">
-				<label for="source">Source</label>
-				<textarea class="form-control" id="source" name="source" cols="30" rows="10">
-title:
-artists:
-key:C
-comment:
-bpm:100
-meter:4/4
-body:
-</textarea>
-				<select class="form-control select" id="new_key" name="new_key">
-					<option value="" selected>Original key</option>
-					<option value="C">C</option>
-					<option value="C#">C#</option>
-					<option value="Db">Db</option>
-					<option value="D">D</option>
-					<option value="D#">D#</option>
-					<option value="Eb">Eb</option>
-					<option value="E">E</option>
-					<option value="F">F</option>
-					<option value="F#">F#</option>
-					<option value="Gb">Gb</option>
-					<option value="G">G</option>
-					<option value="G#">G#</option>
-					<option value="Ab">Ab</option>
-					<option value="A">A</option>
-					<option value="A#">A#</option>
-					<option value="Bb">Bb</option>
-					<option value="B">B</option>
-				</select>
-				<button class="hidden-xs btn-print btn btn-primary" type="submit">Print</button>
-				<button class="visible-xs btn-print btn btn-warning btn-block" type="submit">Print</button>
-				<p class="text-center">
-					<span class="visible-xs">Print option might not work on mobile devices.</span>
-				</p>
-			</div>
-			<input type="hidden" name="mode" value="traditional">
-		</form>
-	</div>
+            <div class="song-details">
+                <span>BPM: 100</span>
+                <span>Meter: 4/4</span>
+                <span>Key: C</span>
+                <span>Comment: This is a sample song</span>
+            </div>
 
-	<script src="dist/js/scripts.min.js"></script>
+            <div class="song-body">
+                <div class="section">Intro</div>
+                <div class="symbol">{</div>
+                <div class="comment">(This is a comment)</div>
+                <div class="chord">G</div>
+                <div class="bar">\</div>
+                <div class="symbol">}</div>
+            </div>
+
+            <div class="song-body">
+                <div class="section">Verse</div>
+                <div class="chord">G</div>
+                <div class="bar">\</div>
+                <div class="chord">D<div class="timing">qqqq.</div></div>
+            </div>
+        </div>
+    </div>
+
+    <header class="row">
+        <div class="col-xs-6 col-sm-7 col-md-7 col-lg-7">
+            <h1 class="brand">Song Coder <span class="divider hidden-xs"></span> <span class="hidden-xs description">A chord sheet maker by EJ</span>
+            </h1>
+        </div>
+        <div class="col-xs-6 col-sm-5 col-md-5 col-lg-5 text-right">
+            <a href="guide.html" class="btn btn-default" target="_blank">Read the guide</a>
+        </div>
+    </header>
+
+    <form id="songForm" class="form form-inline" onsubmit="return false">
+        <div class="col-lg-12">
+            <label for="sourceCode">Source</label>
+            <textarea id="sourceCode" v-model="sourceCode" v-on:keyup="parse()" class="form-control" cols="30"
+                      rows="10"></textarea>
+
+            <br/><br/>
+
+            <select class="form-control select" v-model="newKey" v-on:change="parse()">
+                <option disabled selected value="">Original key</option>
+                <option v-for="key in keys" v-bind:value="key">{{ key }}</option>
+            </select>
+            <button v-on:click="parse()" class="btn btn-primary" type="submit">Print</button>
+        </div>
+    </form>
+</div>
+
+<script src="dist/js/scripts.min.js"></script>
 </body>
 
 </html>

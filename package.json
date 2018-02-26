@@ -15,7 +15,7 @@
   },
   "scripts": {
     "build": "npm run build:js && npm run build:sass",
-    "build:js": "cat node_modules/jquery/dist/jquery.slim.min.js node_modules/bootstrap/dist/js/bootstrap.min.js assets/js/*.js | uglifyjs --mangle > dist/js/scripts.min.js",
+    "build:js": "cat node_modules/vue/dist/vue.js assets/js/*.js | uglifyjs --mangle > dist/js/scripts.min.js",
     "prebuild:js": "npm run lint",
     "build:sass": "cp -R node_modules/bootstrap/dist/fonts dist/ | cat node_modules/bootstrap/dist/css/bootstrap.min.css assets/sass/*.scss assets/css/*.css | node-sass --output-style compressed > dist/css/styles.min.css",
     "lint": "jshint assets/js/*.js || true"
@@ -23,7 +23,7 @@
   "author": "EJ Perez",
   "license": "ISC",
   "repository": {
-	  "url": "https://github.com/ejperez/songcoder.git",
-	  "type": "git"
+    "url": "https://github.com/ejperez/songcoder.git",
+    "type": "git"
   }
 }
