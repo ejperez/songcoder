@@ -1,196 +1,241 @@
 /* raleway-regular - latin */
+
 @font-face {
-  font-family: 'Raleway';
-  font-style: normal;
-  font-weight: 400;
-  src: url('../fonts/raleway-v11-latin-regular.eot'); /* IE9 Compat Modes */
-  src: local('Raleway'), local('Raleway-Regular'),
-  url('../fonts/raleway-v11-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('../fonts/raleway-v11-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */ url('../fonts/raleway-v11-latin-regular.woff') format('woff'), /* Modern Browsers */ url('../fonts/raleway-v11-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */ url('../fonts/raleway-v11-latin-regular.svg#Raleway') format('svg'); /* Legacy iOS */
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/raleway-v11-latin-regular.eot');
+    /* IE9 Compat Modes */
+    src: local('Raleway'), local('Raleway-Regular'), url('../fonts/raleway-v11-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../fonts/raleway-v11-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+    url('../fonts/raleway-v11-latin-regular.woff') format('woff'), /* Modern Browsers */
+    url('../fonts/raleway-v11-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('../fonts/raleway-v11-latin-regular.svg#Raleway') format('svg');
+    /* Legacy iOS */
 }
+
 
 /* inconsolata-regular - latin */
+
 @font-face {
-  font-family: 'Inconsolata';
-  font-style: normal;
-  font-weight: 400;
-  src: url('../fonts/inconsolata-v15-latin-regular.eot'); /* IE9 Compat Modes */
-  src: local('Inconsolata Regular'), local('Inconsolata-Regular'),
-  url('../fonts/inconsolata-v15-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('../fonts/inconsolata-v15-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */ url('../fonts/inconsolata-v15-latin-regular.woff') format('woff'), /* Modern Browsers */ url('../fonts/inconsolata-v15-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */ url('../fonts/inconsolata-v15-latin-regular.svg#Inconsolata') format('svg'); /* Legacy iOS */
+    font-family: 'Inconsolata';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/inconsolata-v15-latin-regular.eot');
+    /* IE9 Compat Modes */
+    src: local('Inconsolata Regular'), local('Inconsolata-Regular'), url('../fonts/inconsolata-v15-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../fonts/inconsolata-v15-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+    url('../fonts/inconsolata-v15-latin-regular.woff') format('woff'), /* Modern Browsers */
+    url('../fonts/inconsolata-v15-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('../fonts/inconsolata-v15-latin-regular.svg#Inconsolata') format('svg');
+    /* Legacy iOS */
 }
 
 @font-face {
-  font-family: 'musisync';
-  src: url('../fonts/musisync.woff') format('woff'), /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */ url('../css/fonts/musisync.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+    font-family: 'musisync';
+    src: url('../fonts/musisync.woff') format('woff'), /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+    url('../css/fonts/musisync.ttf') format('truetype');
+    /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
 }
 
 header {
-  margin-bottom: 10px;
-  line-height: 35px;
-  margin-top: 10px;
-
-  .brand {
-    font-size: 3rem;
-    padding-right: 10px;
+    margin-bottom: 10px;
+    line-height: 35px;
     margin-top: 10px;
-    vertical-align: middle;
-  }
-
-  .divider {
-    border-right: solid 1px #000;
-  }
-
-  .description {
-    font-size: 1.2rem;
-    letter-spacing: 5px;
-    padding-left: 10px;
-    vertical-align: middle;
-  }
+    .brand {
+        font-size: 3rem;
+        padding-right: 10px;
+        margin-top: 10px;
+        vertical-align: middle;
+    }
+    .divider {
+        border-right: solid 1px #000;
+    }
+    .description {
+        font-size: 1.2rem;
+        letter-spacing: 5px;
+        padding-left: 10px;
+        vertical-align: middle;
+    }
 }
 
 .music {
-  font-family: musisync, serif;
+    font-family: musisync, serif;
 }
 
 #guide {
-  font-family: 'Raleway', sans-serif;
+    font-family: 'Raleway', sans-serif;
 }
 
 #app {
-  font-family: 'Raleway', sans-serif;
-  margin-bottom: 10px;
-
-  #sourceCode {
-    width: 100%;
-    height: 650px;
-    font-family: 'Inconsolata', monospace;
-    font-size: 16px;
-    line-height: 25px;
-    resize: none;
-    outline: none;
-  }
+    font-family: 'Raleway', sans-serif;
+    margin-bottom: 10px;
+    #sourceCode {
+        width: 100%;
+        height: 650px;
+        font-family: 'Inconsolata', monospace;
+        font-size: 16px;
+        line-height: 25px;
+        resize: none;
+        outline: none;
+    }
 }
 
 .song-container {
-  font-family: 'Inconsolata', monospace;
-
-  .song-title {
-    font-size: 30px;
-  }
-
-  .song-details {
-    border-top: solid thin black;
-    padding-top: 10px;
-
-    span {
-      margin-right: 10px;
+    font-family: 'Inconsolata', monospace;
+    .song-title {
+        font-size: 30px;
     }
-  }
-
-  .song-body {
-    margin-top: 20px;
-
-    .section {
-      font-weight: bold;
+    .song-details {
+        border-top: solid thin black;
+        padding-top: 10px;
+        span {
+            margin-right: 20px;
+        }
     }
+    .song-body {
+		margin-top: 20px;
+		
+		&__item {
+			
+			display: inline-block;
 
-    .comment, .chord, .bar, .symbol {
-      display: inline-block;
+			&--section {
+				display: block;
+			}
+
+			&-container {
+				display: table;
+				min-height: 40px;				
+			}
+
+			&-content {
+				display: table-cell;
+				vertical-align: middle;
+			}
+
+			.section {
+				font-weight: bold;
+			}
+	
+			.symbol, .bar {
+				font-family: musisync, serif;
+				font-size: 40px;
+				line-height: 50px;
+			}
+
+			.chord {
+				font-size: 20px;
+				.timing {
+					font-family: musisync, serif;
+					font-size: 18px;
+					line-height: 15px;
+					.dot {
+						margin-left: -4px;
+					}
+				}
+			}
+		}				
+
+        // div {
+        //     outline: solid thin black;
+        //     min-height: 40px;
+        //     display: inline;
+		// }		        
+         // .comment,
+        // .chord,
+        // .bar,
+        // .symbol {
+        //     display: inline-block;
+        // }
+        // .bar,
+        // .symbol {
+        //     font-family: musisync, serif;
+        //     font-size: 30px;
+        //     line-height: 15px;
+        // }
+        // .bar {
+        //     padding-left: 10px;
+        // }
+        // .comment {
+        //     font-size: 10px;
+        //     font-style: italic;
+        // }
+        // .chord {
+        //     font-size: 14px;
+        //     vertical-align: middle;
+        //     line-height: 16px;
+        //     height: 40px;
+        //     .timing {
+        //         font-family: musisync, serif;
+        //         font-size: 18px;
+        //         line-height: 15px;
+        //         .dot {
+        //             margin-left: -4px;
+        //         }
+        //     }
+        // }
+        // .comment {
+        //     font-size: 10px;
+        //     vertical-align: middle;
+        //     line-height: 16px;
+        //     height: 40px;
+        // }
     }
-
-    .bar, .symbol {
-      font-family: musisync, serif;
-      font-size: 30pt;
-      line-height: 15pt;
+    .song-section {
+        .song-section-title {
+            font-weight: bold;
+        }
     }
-
-    .comment {
-      font-size: 10pt;
-      font-style: italic;
+    .right {
+        text-align: right;
     }
-
-    .chord {
-      font-size: 14pt;
-      vertical-align: middle;
-      line-height: 16pt;
-      height: 40px;
-
-      .timing {
+    .full-width {
+        width: 100%;
+    }
+    #header td {
+        padding: 5px;
+    }
+    #header #title {
+        margin: 0;
+        padding: 0;
+    }
+    .bar-line {
         font-family: musisync, serif;
-      }
+        font-weight: normal;
+        font-size: 30px;
+        vertical-align: top;
+        line-height: 20px;
+        width: 1px;
     }
-
-    .comment {
-      font-size: 10pt;
-      vertical-align: middle;
-      line-height: 16pt;
-      height: 40px;
+    .bar-line-after span {
+        vertical-align: middle;
     }
-  }
-
-  .song-section {
-    .song-section-title {
-      font-weight: bold;
+    .chord-timing {
+        font-family: musisync, serif;
+        font-size: 18px;
+        line-height: 15px;
+        white-space: nowrap;
     }
-  }
-
-  .right {
-    text-align: right;
-  }
-
-  .full-width {
-    width: 100%;
-  }
-
-  #header td {
-    padding: 5px;
-  }
-
-  #header #title {
-    margin: 0;
-    padding: 0;
-  }
-
-  .bar-line {
-    font-family: musisync, serif;
-    font-weight: normal;
-    font-size: 30pt;
-    vertical-align: top;
-    line-height: 20px;
-    width: 1px;
-  }
-
-  .bar-line-after span {
-    vertical-align: middle;
-  }
-
-  .chord-timing {
-    font-family: musisync, serif;
-    font-size: 18pt;
-    line-height: 15px;
-    white-space: nowrap;
-  }
-
-  .chord-timing .dot {
-    margin-left: -4px
-  }
-
-  .blank-timing {
-    font-size: 18pt;
-  }
+    .chord-timing .dot {
+        margin-left: -4px
+    }
+    .blank-timing {
+        font-size: 18px;
+    }
 }
 
 @media print {
-  #app {
-    display: none;
-  }
-
-  #print {
-    display: block;
-  }
+    #app {
+        display: none;
+    }
+    #print {
+        display: block;
+    }
 }
 
 @media screen {
-  #print {
-    display: none;
-  }
+    #print {
+        display: none;
+    }
 }
