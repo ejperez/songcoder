@@ -60,20 +60,18 @@
 
     <div class="row">
         <div class="col-md-12 song-container">
-            <h1 class="song-title">Song Title <span>- Song Artist</span></h1>
+            <h1 class="song-title">{{ song.title }} <span v-if="song.artists">- {{ song.artists }}</span></h1>
 
             <div class="song-details">
-                <span>BPM: 100</span>
-                <span>Meter: 4/4</span>
-                <span>Key: C</span>
-                <span>Comment: This is a sample song</span>
+                <span>BPM: {{ song.bpm }}</span>
+                <span>Meter: {{ song.meter }}</span>
+                <span>Key: {{ song.key }}</span>
+                <span v-if="song.comment">Comment: {{ song.comment }}</span>
             </div>
 
             <div class="song-body">
-				<div class="song-body__item--section">
-					<div class="song-body__item-container">
-						<span class="song-body__item-content section">Intro</span>						
-					</div>
+				<div class="song-body__item song-body__item--section">
+					<div class="song-body__section">Intro</div>					
 				</div>
 				<div class="song-body__item">
 					<div class="song-body__item-container">
@@ -97,12 +95,37 @@
 				</div>
 				<div class="song-body__item">
 					<div class="song-body__item-container">
-						<span class="song-body__item-content bar">\</span>
+						<span class="song-body__item-content symbol">\</span>
 					</div>
 				</div>
 				<div class="song-body__item">
 					<div class="song-body__item-container">
 						<span class="song-body__item-content chord">G</span>
+					</div>
+				</div>
+				<div class="song-body__item">
+					<div class="song-body__item-container">
+						<span class="song-body__item-content symbol">\</span>
+					</div>
+				</div>
+				<div class="song-body__item">
+					<div class="song-body__item-container">
+						<span class="song-body__item-content label">1.</span>
+					</div>
+				</div>
+				<div class="song-body__item">
+					<div class="song-body__item-container">
+						<span class="song-body__item-content chord">Gm7b5/C<div class="timing">qqq</div>
+					</div>
+				</div>
+				<div class="song-body__item">
+					<div class="song-body__item-container">
+						<span class="song-body__item-content label">2.</span>
+					</div>
+				</div>
+				<div class="song-body__item">
+					<div class="song-body__item-container">
+						<span class="song-body__item-content chord">Gm7b5/C<div class="timing">qqqq</div>
 					</div>
 				</div>
                 <div class="song-body__item">
@@ -111,12 +134,49 @@
 						<span class="song-body__item-content repeat">x4</span>
 					</div>
 				</div>
-                
-				<div class="symbol">} <span class="repeat">x4</span></div>
-				<div class="section">Verse</div>
-                <div class="chord">G</div>
-                <div class="bar">\</div>
-                <div class="chord">D<div class="timing">seqw<span class="dot">.</span></div></div>
+                <div class="song-body__item song-body__item--section">
+					<div class="song-body__section">Verse</div>
+				</div>
+				<div class="song-body__item">
+					<div class="song-body__item-container">
+						<span class="song-body__item-content chord">G<div class="timing">seqw<span class="dot">.</span></div>
+					</div>
+				</div>
+				<div class="song-body__item">
+					<div class="song-body__item-container">
+						<span class="song-body__item-content symbol">\</span>
+					</div>
+				</div>
+				<div class="song-body__item">
+					<div class="song-body__item-container">
+						<span class="song-body__item-content chord">Gm7b5/C<div class="timing">q</div>
+					</div>
+				</div>
+				<div class="song-body__item">
+					<div class="song-body__item-container">
+						<span class="song-body__item-content chord">Gm7b5/C<div class="timing">qqq</div>
+					</div>
+				</div>
+				<div class="song-body__item">
+					<div class="song-body__item-container">
+						<span class="song-body__item-content symbol">\</span>
+					</div>
+				</div>
+				<div class="song-body__item">
+					<div class="song-body__item-container">
+						<span class="song-body__item-content chord">%</span>
+					</div>
+				</div>
+				<div class="song-body__item">
+					<div class="song-body__item-container">
+						<span class="song-body__item-content symbol">\</span>
+					</div>
+				</div>				
+				<div class="song-body__item">
+					<div class="song-body__item-container">
+						<span class="song-body__item-content chord"><div class="timing timing--rest">QQQQ<span class="dot">.</span></div>
+					</div>
+				</div>
             </div>
         </div>
     </div>
@@ -140,7 +200,7 @@
             <br/><br/>
 
             <select class="form-control select" v-model="newKey" v-on:change="parse()">
-                <option disabled selected value="">Original key</option>
+                <option selected value="">Original key</option>
                 <option v-for="key in keys" v-bind:value="key">{{ key }}</option>
             </select>
             <button v-on:click="parse()" class="btn btn-primary" type="submit">Print</button>

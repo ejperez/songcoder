@@ -84,158 +84,96 @@ header {
 .song-container {
     font-family: 'Inconsolata', monospace;
     .song-title {
-        font-size: 30px;
+		font-size: 30px;
+		margin: 0;
     }
     .song-details {
         border-top: solid thin black;
-        padding-top: 10px;
         span {
             margin-right: 20px;
         }
     }
     .song-body {
 		margin-top: 20px;
-		
-		&__item {
-			
-			display: inline-block;
 
-			&--section {
-				display: block;
-			}
+		&__section {		
+			font-weight: bold;			
+			font-size: 18px;
+		}		
+		
+		&__item {		
+			display: inline-block;			
 
 			&-container {
 				display: table;
-				min-height: 40px;				
+				min-height: 40px;		
 			}
 
 			&-content {
 				display: table-cell;
 				vertical-align: middle;
-			}
-
-			.section {
-				font-weight: bold;
-			}
+			}			
 	
-			.symbol, .bar {
+			.symbol {
 				font-family: musisync, serif;
 				font-size: 40px;
 				line-height: 50px;
 			}
 
-			.chord {
+			.repeat {
+				padding: 8px 0 0 5px;
 				font-size: 20px;
+			}
+
+			.comment {
+				font-style: italic;
+			}
+
+			.label {
+				color: black;
+				font-size: 16px;
+				border: solid thin black;
+				padding: 0 2px 0 2px;			
+			}
+
+			.chord {
+				font-size: 20px;				
+
 				.timing {
-					font-family: musisync, serif;
-					font-size: 18px;
-					line-height: 15px;
+					font-family: musisync, serif;					
+					line-height: 2px;
 					.dot {
-						margin-left: -4px;
+						margin-left: -2px;
+					}
+				}
+
+				.timing--rest {
+					font-size: 30px;
+					.dot {
+						margin-left: -6px;
 					}
 				}
 			}
-		}				
-
-        // div {
-        //     outline: solid thin black;
-        //     min-height: 40px;
-        //     display: inline;
-		// }		        
-         // .comment,
-        // .chord,
-        // .bar,
-        // .symbol {
-        //     display: inline-block;
-        // }
-        // .bar,
-        // .symbol {
-        //     font-family: musisync, serif;
-        //     font-size: 30px;
-        //     line-height: 15px;
-        // }
-        // .bar {
-        //     padding-left: 10px;
-        // }
-        // .comment {
-        //     font-size: 10px;
-        //     font-style: italic;
-        // }
-        // .chord {
-        //     font-size: 14px;
-        //     vertical-align: middle;
-        //     line-height: 16px;
-        //     height: 40px;
-        //     .timing {
-        //         font-family: musisync, serif;
-        //         font-size: 18px;
-        //         line-height: 15px;
-        //         .dot {
-        //             margin-left: -4px;
-        //         }
-        //     }
-        // }
-        // .comment {
-        //     font-size: 10px;
-        //     vertical-align: middle;
-        //     line-height: 16px;
-        //     height: 40px;
-        // }
-    }
-    .song-section {
-        .song-section-title {
-            font-weight: bold;
-        }
-    }
-    .right {
-        text-align: right;
-    }
-    .full-width {
-        width: 100%;
-    }
-    #header td {
-        padding: 5px;
-    }
-    #header #title {
-        margin: 0;
-        padding: 0;
-    }
-    .bar-line {
-        font-family: musisync, serif;
-        font-weight: normal;
-        font-size: 30px;
-        vertical-align: top;
-        line-height: 20px;
-        width: 1px;
-    }
-    .bar-line-after span {
-        vertical-align: middle;
-    }
-    .chord-timing {
-        font-family: musisync, serif;
-        font-size: 18px;
-        line-height: 15px;
-        white-space: nowrap;
-    }
-    .chord-timing .dot {
-        margin-left: -4px
-    }
-    .blank-timing {
-        font-size: 18px;
-    }
+		}
+		
+		&__item--section {
+			display: block;
+			margin-bottom: -15px;
+		}
+	}
 }
 
-@media print {
-    #app {
-        display: none;
-    }
-    #print {
-        display: block;
-    }
-}
+// @media print {
+//     #app {
+//         display: none;
+//     }
+//     #print {
+//         display: block;
+//     }
+// }
 
-@media screen {
-    #print {
-        display: none;
-    }
-}
+// @media screen {
+//     #print {
+//         display: none;
+//     }
+// }
