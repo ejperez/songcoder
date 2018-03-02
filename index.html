@@ -57,6 +57,41 @@
 	<span class="music"></span>
 
 	<div id="app" class="container-fluid">
+		
+		<header class="row hidden-print">
+			<div class="col-xs-6 col-sm-7 col-md-7 col-lg-7">
+				<h1 class="brand">Song Coder
+					<span class="divider hidden-xs"></span>
+					<span class="hidden-xs description">A chord sheet maker by EJ</span>
+				</h1>
+			</div>
+			<div class="col-xs-6 col-sm-5 col-md-5 col-lg-5 text-right">
+				<a href="guide.html" class="btn btn-default" target="_blank">Read the guide</a>
+			</div>
+		</header>
+
+		<form id="songForm" class="form form-inline hidden-print" onsubmit="return false">
+			<div class="col-lg-12">
+				<label for="sourceCode">Source</label>
+				<textarea id="sourceCode" v-model="sourceCode" class="form-control" cols="30" rows="10" v-on:keyup="parse()"></textarea>
+
+				<br/>
+				<br/>
+
+				<select class="form-control select" v-model="newKey" v-on:change="parse()">
+					<option selected value="">Original key</option>
+					<option v-for="key in keys" v-bind:value="key">{{ key }}</option>
+				</select>
+				<button v-on:click="print()" class="btn btn-primary" type="submit">Print</button>
+			</div>
+		</form>
+
+		<div class="row">
+			<div class="col-md-12">
+				<br>
+				<label for="sourceCode">Print Preview</label>
+			</div>
+		</div>	
 
 		<div class="row">
 			<div class="col-md-12 song-container">
@@ -71,10 +106,6 @@
 					<span v-if="song.comment">Comment: {{ song.comment }}</span>
 				</div>
 
-				<ul>
-					<li v-for="item in song.body">{{ item.value }} - {{ item.type }}</li>
-				</ul>
-
 				<div class="song-body">
 					<template v-for="item in song.body">
 
@@ -87,7 +118,7 @@
 							<div v-if="item.type !== 'section' && item.type !== 'break'" class="song-body__item-container">
 
 								<div v-if="item.type === 'chord'" class="song-body__item-content chord">
-									<span v-html="item.value"></span>
+									<div v-html="item.value" class="chord-value" ></div>
 									<div v-if="item.timing" v-html="item.timing" class="timing"></div>
 								</div>
 
@@ -111,33 +142,6 @@
 			</div>
 		</div>
 
-		<header class="row">
-			<div class="col-xs-6 col-sm-7 col-md-7 col-lg-7">
-				<h1 class="brand">Song Coder
-					<span class="divider hidden-xs"></span>
-					<span class="hidden-xs description">A chord sheet maker by EJ</span>
-				</h1>
-			</div>
-			<div class="col-xs-6 col-sm-5 col-md-5 col-lg-5 text-right">
-				<a href="guide.html" class="btn btn-default" target="_blank">Read the guide</a>
-			</div>
-		</header>
-
-		<form id="songForm" class="form form-inline" onsubmit="return false">
-			<div class="col-lg-12">
-				<label for="sourceCode">Source</label>
-				<textarea id="sourceCode" v-model="sourceCode" v-on:keyup="parse()" class="form-control" cols="30" rows="10"></textarea>
-
-				<br/>
-				<br/>
-
-				<select class="form-control select" v-model="newKey" v-on:change="parse()">
-					<option selected value="">Original key</option>
-					<option v-for="key in keys" v-bind:value="key">{{ key }}</option>
-				</select>
-				<button v-on:click="parse()" class="btn btn-primary" type="submit">Print</button>
-			</div>
-		</form>
 	</div>
 
 	<script src="dist/js/scripts.min.js"></script>

@@ -1,7 +1,7 @@
 var app = new Vue( {
 	el: '#app',
 	computed: {
-		keys: function(){
+		keys: function () {
 			return SongCoder.keys;
 		}
 	},
@@ -21,6 +21,9 @@ var app = new Vue( {
 	methods: {
 		parse: function () {
 			this.song = SongCoder.parse( this.sourceCode, this.newKey );
+		},
+		print: function () {
+			window.print();
 		}
 	}
 } );

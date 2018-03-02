@@ -72,7 +72,7 @@ header {
     margin-bottom: 10px;
     #sourceCode {
         width: 100%;
-        height: 650px;
+        height: 450px;
         font-family: 'Inconsolata', monospace;
         font-size: 16px;
         line-height: 25px;
@@ -140,10 +140,14 @@ header {
 			.chord {
 				font-size: 20px;
 
+				&-value {
+					margin-bottom: 2px;
+				}
+
 				.timing {
 					font-family: musisync, serif;					
 					font-size: 30px;
-					line-height: 2px;
+					line-height: 0;
 					.dot {
 						margin-left: -2px;
 					}
@@ -164,17 +168,17 @@ header {
 	}
 }
 
-// @media print {
-//     #app {
-//         display: none;
-//     }
-//     #print {
-//         display: block;
-//     }
-// }
+@media print {
+    .hidden-print {
+        display: none;
+    }
+    .visible-print {
+        display: block;
+    }
+}
 
-// @media screen {
-//     #print {
-//         display: none;
-//     }
-// }
+@media screen {
+    .visible-print {
+        display: none;
+    }
+}
