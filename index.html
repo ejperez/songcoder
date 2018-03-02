@@ -73,7 +73,7 @@
 		<form id="songForm" class="form form-inline hidden-print" onsubmit="return false">
 			<div class="col-lg-12">
 				<label for="sourceCode">Source</label>
-				<textarea id="sourceCode" v-model="sourceCode" class="form-control" cols="30" rows="10" v-on:keyup="parse()"></textarea>
+				<textarea id="sourceCode" v-model="sourceCode" class="form-control" cols="30" rows="10"></textarea>
 
 				<br/>
 				<br/>
@@ -82,11 +82,12 @@
 					<option selected value="">Original key</option>
 					<option v-for="key in keys" v-bind:value="key">{{ key }}</option>
 				</select>
-				<button v-on:click="print()" class="btn btn-primary" type="submit">Print</button>
+				<button v-on:click="parse()" class="btn btn-primary" type="submit">Generate</button>
+				<button v-if="song.body.length" v-on:click="print()" class="btn btn-primary" type="submit">Print</button>
 			</div>
 		</form>
 
-		<div class="row">
+		<div class="row hidden-print">
 			<div class="col-md-12">
 				<br>
 				<label for="sourceCode">Print Preview</label>
