@@ -102,7 +102,8 @@ header {
 		}		
 		
 		&__item {		
-			display: inline-block;			
+			display: inline-block;
+			margin-right: 10px;
 
 			&-container {
 				display: table;
@@ -137,18 +138,18 @@ header {
 			}
 
 			.chord {
-				font-size: 20px;				
+				font-size: 20px;
 
 				.timing {
 					font-family: musisync, serif;					
+					font-size: 30px;
 					line-height: 2px;
 					.dot {
 						margin-left: -2px;
 					}
 				}
 
-				.timing--rest {
-					font-size: 30px;
+				.timing--rest {					
 					.dot {
 						margin-left: -6px;
 					}

@@ -2,213 +2,145 @@
 <html>
 
 <head lang="en">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Song chord sheet maker">
-    <meta name="author" content="EJ Perez">
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Song chord sheet maker">
+	<meta name="author" content="EJ Perez">
 
-    <!-- MOBILE SPECIFICATIONS -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="format-detection" content="telephone=no">
+	<!-- MOBILE SPECIFICATIONS -->
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
 
-    <!-- ICONS -->
-    <link rel="apple-touch-icon" sizes="57x57" href="dist/images/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="dist/images/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="dist/images/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="dist/images/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="dist/images/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="dist/images/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="dist/images/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="dist/images/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="dist/images/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="dist/images/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="dist/images/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="dist/images/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="dist/images/favicon-16x16.png">
-    <link rel="manifest" href="manifest.json">
+	<!-- ICONS -->
+	<link rel="apple-touch-icon" sizes="57x57" href="dist/images/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="dist/images/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="dist/images/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="dist/images/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="dist/images/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="dist/images/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="dist/images/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="dist/images/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="dist/images/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192" href="dist/images/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="dist/images/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="dist/images/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="dist/images/favicon-16x16.png">
+	<link rel="manifest" href="manifest.json">
 
-    <!-- COLORS -->
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
+	<!-- COLORS -->
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
 
-    <title>Song Coder | Traditional Mode</title>
-    <link rel="stylesheet" href="dist/css/styles.min.css"/>
+	<title>Song Coder | Traditional Mode</title>
+	<link rel="stylesheet" href="dist/css/styles.min.css" />
 
-    <script>
-        if ( 'serviceWorker' in navigator ) {
-            window.addEventListener( 'load', function () {
-                navigator.serviceWorker.register( 'sw.js' ).then(
-                        function ( registration ) {
-                            // Registration was successful
-                            console.log( 'ServiceWorker registration successful with scope: ', registration.scope );
-                        },
-                        function ( err ) {
-                            // registration failed :(
-                            console.log( 'ServiceWorker registration failed: ', err );
-                        } );
-            } );
-        }
-    </script>
+	<script>
+		if ( 'serviceWorker' in navigator ) {
+			window.addEventListener( 'load', function () {
+				navigator.serviceWorker.register( 'sw.js' ).then(
+					function ( registration ) {
+						// Registration was successful
+						console.log( 'ServiceWorker registration successful with scope: ', registration.scope );
+					},
+					function ( err ) {
+						// registration failed :(
+						console.log( 'ServiceWorker registration failed: ', err );
+					} );
+			} );
+		}
+	</script>
 </head>
 
 <body>
-<span class="music"></span>
+	<span class="music"></span>
 
-<div id="app" class="container-fluid">
+	<div id="app" class="container-fluid">
 
-    <div class="row">
-        <div class="col-md-12 song-container">
-            <h1 class="song-title">{{ song.title }} <span v-if="song.artists">- {{ song.artists }}</span></h1>
+		<div class="row">
+			<div class="col-md-12 song-container">
+				<h1 class="song-title">{{ song.title }}
+					<span v-if="song.artists">- {{ song.artists }}</span>
+				</h1>
 
-            <div class="song-details">
-                <span>BPM: {{ song.bpm }}</span>
-                <span>Meter: {{ song.meter }}</span>
-                <span>Key: {{ song.key }}</span>
-                <span v-if="song.comment">Comment: {{ song.comment }}</span>
-            </div>
+				<div class="song-details">
+					<span>BPM: {{ song.bpm }}</span>
+					<span>Meter: {{ song.meter }}</span>
+					<span>Key: {{ song.key }}</span>
+					<span v-if="song.comment">Comment: {{ song.comment }}</span>
+				</div>
 
-            <div class="song-body">
-				<div class="song-body__item song-body__item--section">
-					<div class="song-body__section">Intro</div>					
-				</div>
-				<div class="song-body__item">
-					<div class="song-body__item-container">
-						<span class="song-body__item-content symbol">{</span>
-					</div>
-				</div>
-				<div class="song-body__item">
-					<div class="song-body__item-container">
-						<span class="song-body__item-content comment">(This is a comment)</span>
-					</div>
-				</div>
-				<div class="song-body__item">
-					<div class="song-body__item-container">
-						<span class="song-body__item-content chord">G</span>
-					</div>
-				</div>
-				<div class="song-body__item">
-					<div class="song-body__item-container">
-						<span class="song-body__item-content chord">G</span>
-					</div>
-				</div>
-				<div class="song-body__item">
-					<div class="song-body__item-container">
-						<span class="song-body__item-content symbol">\</span>
-					</div>
-				</div>
-				<div class="song-body__item">
-					<div class="song-body__item-container">
-						<span class="song-body__item-content chord">G</span>
-					</div>
-				</div>
-				<div class="song-body__item">
-					<div class="song-body__item-container">
-						<span class="song-body__item-content symbol">\</span>
-					</div>
-				</div>
-				<div class="song-body__item">
-					<div class="song-body__item-container">
-						<span class="song-body__item-content label">1.</span>
-					</div>
-				</div>
-				<div class="song-body__item">
-					<div class="song-body__item-container">
-						<span class="song-body__item-content chord">Gm7b5/C<div class="timing">qqq</div>
-					</div>
-				</div>
-				<div class="song-body__item">
-					<div class="song-body__item-container">
-						<span class="song-body__item-content label">2.</span>
-					</div>
-				</div>
-				<div class="song-body__item">
-					<div class="song-body__item-container">
-						<span class="song-body__item-content chord">Gm7b5/C<div class="timing">qqqq</div>
-					</div>
-				</div>
-                <div class="song-body__item">
-					<div class="song-body__item-container">
-						<span class="song-body__item-content symbol">}</span>
-						<span class="song-body__item-content repeat">x4</span>
-					</div>
-				</div>
-                <div class="song-body__item song-body__item--section">
-					<div class="song-body__section">Verse</div>
-				</div>
-				<div class="song-body__item">
-					<div class="song-body__item-container">
-						<span class="song-body__item-content chord">G<div class="timing">seqw<span class="dot">.</span></div>
-					</div>
-				</div>
-				<div class="song-body__item">
-					<div class="song-body__item-container">
-						<span class="song-body__item-content symbol">\</span>
-					</div>
-				</div>
-				<div class="song-body__item">
-					<div class="song-body__item-container">
-						<span class="song-body__item-content chord">Gm7b5/C<div class="timing">q</div>
-					</div>
-				</div>
-				<div class="song-body__item">
-					<div class="song-body__item-container">
-						<span class="song-body__item-content chord">Gm7b5/C<div class="timing">qqq</div>
-					</div>
-				</div>
-				<div class="song-body__item">
-					<div class="song-body__item-container">
-						<span class="song-body__item-content symbol">\</span>
-					</div>
-				</div>
-				<div class="song-body__item">
-					<div class="song-body__item-container">
-						<span class="song-body__item-content chord">%</span>
-					</div>
-				</div>
-				<div class="song-body__item">
-					<div class="song-body__item-container">
-						<span class="song-body__item-content symbol">\</span>
-					</div>
-				</div>				
-				<div class="song-body__item">
-					<div class="song-body__item-container">
-						<span class="song-body__item-content chord"><div class="timing timing--rest">QQQQ<span class="dot">.</span></div>
-					</div>
-				</div>
-            </div>
-        </div>
-    </div>
+				<ul>
+					<li v-for="item in song.body">{{ item.value }} - {{ item.type }}</li>
+				</ul>
 
-    <header class="row">
-        <div class="col-xs-6 col-sm-7 col-md-7 col-lg-7">
-            <h1 class="brand">Song Coder <span class="divider hidden-xs"></span> <span class="hidden-xs description">A chord sheet maker by EJ</span>
-            </h1>
-        </div>
-        <div class="col-xs-6 col-sm-5 col-md-5 col-lg-5 text-right">
-            <a href="guide.html" class="btn btn-default" target="_blank">Read the guide</a>
-        </div>
-    </header>
+				<div class="song-body">
+					<template v-for="item in song.body">
 
-    <form id="songForm" class="form form-inline" onsubmit="return false">
-        <div class="col-lg-12">
-            <label for="sourceCode">Source</label>
-            <textarea id="sourceCode" v-model="sourceCode" v-on:keyup="parse()" class="form-control" cols="30"
-                      rows="10"></textarea>
+						<div v-if="item.type === 'break'"></div>
 
-            <br/><br/>
+						<div v-else class="song-body__item" v-bind:class="{ 'song-body__item--section': item.type === 'section' }">
 
-            <select class="form-control select" v-model="newKey" v-on:change="parse()">
-                <option selected value="">Original key</option>
-                <option v-for="key in keys" v-bind:value="key">{{ key }}</option>
-            </select>
-            <button v-on:click="parse()" class="btn btn-primary" type="submit">Print</button>
-        </div>
-    </form>
-</div>
+							<div v-if="item.type === 'section'" class="song-body__section">{{ item.value }}</div>
 
-<script src="dist/js/scripts.min.js"></script>
+							<div v-if="item.type !== 'section' && item.type !== 'break'" class="song-body__item-container">
+
+								<div v-if="item.type === 'chord'" class="song-body__item-content chord">
+									<span v-html="item.value"></span>
+									<div v-if="item.timing" v-html="item.timing" class="timing"></div>
+								</div>
+
+								<span v-if="item.type === 'symbol' || item.type === 'repeat'" v-html="item.value" class="song-body__item-content symbol"></span>
+
+								<span v-if="item.type === 'comment'" class="song-body__item-content comment">({{ item.value }})</span>
+
+								<span v-if="item.type === 'label'" class="song-body__item-content label">{{ item.value }}</span>
+
+								<span v-if="item.times" class="song-body__item-content repeat">x{{ item.times }}</span>
+
+								<span v-if="item.type === 'rest'" class="song-body__item-content chord">
+									<div v-html="item.timing" class="timing timing--rest"></div>
+
+							</div>
+
+						</div>
+
+					</template>
+				</div>
+			</div>
+		</div>
+
+		<header class="row">
+			<div class="col-xs-6 col-sm-7 col-md-7 col-lg-7">
+				<h1 class="brand">Song Coder
+					<span class="divider hidden-xs"></span>
+					<span class="hidden-xs description">A chord sheet maker by EJ</span>
+				</h1>
+			</div>
+			<div class="col-xs-6 col-sm-5 col-md-5 col-lg-5 text-right">
+				<a href="guide.html" class="btn btn-default" target="_blank">Read the guide</a>
+			</div>
+		</header>
+
+		<form id="songForm" class="form form-inline" onsubmit="return false">
+			<div class="col-lg-12">
+				<label for="sourceCode">Source</label>
+				<textarea id="sourceCode" v-model="sourceCode" v-on:keyup="parse()" class="form-control" cols="30" rows="10"></textarea>
+
+				<br/>
+				<br/>
+
+				<select class="form-control select" v-model="newKey" v-on:change="parse()">
+					<option selected value="">Original key</option>
+					<option v-for="key in keys" v-bind:value="key">{{ key }}</option>
+				</select>
+				<button v-on:click="parse()" class="btn btn-primary" type="submit">Print</button>
+			</div>
+		</form>
+	</div>
+
+	<script src="dist/js/scripts.min.js"></script>
 </body>
 
 </html>
