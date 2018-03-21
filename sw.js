@@ -3,14 +3,10 @@
 importScripts('sw-toolbox.js');
 
 toolbox.precache([
-	'index.html',
-	'traditional.html',
-	'guide.html',
+	'index.html',	
 	'dist/css/styles.min.css',
 	'dist/js/scripts.min.js',
 	'dist/fonts/raleway-v11-latin-regular.woff2',
-	'dist/fonts/inconsolata-v15-latin-regular.woff2',
-	'dist/fonts/musisync.woff',
 	'manifest.json'
 ]);
 	
