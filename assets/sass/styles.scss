@@ -12,6 +12,10 @@
     /* Legacy iOS */
 }
 
+body {
+    padding-bottom: 50px;
+}
+
 header {
     margin-bottom: 10px;
     line-height: 35px;
@@ -20,12 +24,11 @@ header {
         font-size: 3rem;
         padding-right: 10px;
         margin-top: 10px;
-		vertical-align: middle;
-		
-		@media only screen and (max-width : 767px) {
-			font-size: 2rem;
-			text-align: center;
-		}
+        vertical-align: middle;
+        @media only screen and (max-width: 767px) {
+            font-size: 2rem;
+            text-align: center;
+        }
     }
     .divider {
         border-right: solid 1px #000;
@@ -47,19 +50,18 @@ header {
         font-size: 18px;
         line-height: 25px;
         resize: none;
-		outline: none;
-		
-		@media only screen and (max-width : 767px) {
-			height: 260px;
-		}
+        outline: none;
+        @media only screen and (max-width: 767px) {
+            height: 260px;
+        }
     }
 }
 
 .song-container {
     font-family: 'Inconsolata', monospace;
     .song-title {
-		font-size: 30px;
-		margin: 0;
+        font-size: 30px;
+        margin: 0;
     }
     .song-details {
         border-top: solid thin black;
@@ -69,8 +71,8 @@ header {
     }
 }
 
-@media only screen and (max-width : 767px) {
-	h3 {
-		font-size: 1.75rem;
-	}
+@media only screen and (max-width: 767px) {
+    h3 {
+        font-size: 1.75rem;
+    }
 }
