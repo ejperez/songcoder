@@ -33,7 +33,7 @@
 	<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
 	<meta name="theme-color" content="#ffffff">
 
-	<title>Song Coder | Traditional Mode</title>
+	<title>Song Coder</title>
 	<link rel="stylesheet" href="dist/css/styles.min.css" />
 
 	<script>
@@ -54,92 +54,131 @@
 </head>
 
 <body>
-	<span class="music"></span>
-
 	<div id="app" class="container-fluid">
-		
+
 		<header class="row hidden-print">
-			<div class="col-xs-6 col-sm-7 col-md-7 col-lg-7">
+			<div class="col-md-12">
 				<h1 class="brand">Song Coder
 					<span class="divider hidden-xs"></span>
 					<span class="hidden-xs description">A chord sheet maker by EJ</span>
 				</h1>
-			</div>
-			<div class="col-xs-6 col-sm-5 col-md-5 col-lg-5 text-right">
-				<a href="guide.html" class="btn btn-default" target="_blank">Read the guide</a>
+
+				<span class="text-center visible-xs description">A chord sheet maker by EJ</span>
 			</div>
 		</header>
 
-		<form id="songForm" class="form form-inline hidden-print" onsubmit="return false">
-			<div class="col-lg-12">
-				<label for="sourceCode">Source</label>
-				<textarea id="sourceCode" v-model="sourceCode" class="form-control" cols="30" rows="10"></textarea>
+		<div class="row">
+			<form id="song-form" class="form hidden-print">
+				<div class="col-md-2 col-sm-2">
+					<input type="text" placeholder="Title" name="title" class="form-control js-source">
+				</div>
+				<div class="col-md-2 col-sm-2">
+					<input type="text" placeholder="Artists" name="artists" class="form-control js-source">
+				</div>
+				<div class="col-md-2 col-sm-2">
+					<input type="number" placeholder="BPM" name="bpm" value="100" class="form-control js-source">
+				</div>
+				<div class="col-md-2 col-sm-2">
+					<select name="meter" class="form-control js-source">
+						<option value="4/4">4/4</option>
+						<option value="6/8">3/4</option>
+						<option value="6/8">6/8</option>
+						<option value="2/4">2/4</option>
+						<option value="12/8">12/8</option>
+					</select>
+				</div>
+				<div class="col-md-2 col-sm-2">
+					<select name="key" class="form-control js-source">
+						<option value="C">C</option>
+						<option value="C#">C#</option>
+						<option value="Db">Db</option>
+						<option value="D">D</option>
+						<option value="D#">D#</option>
+						<option value="Eb">Eb</option>
+						<option value="E">E</option>
+						<option value="F">F</option>
+						<option value="F#">F#</option>
+						<option value="Gb">Gb</option>
+						<option value="G">G</option>
+						<option value="G#">G#</option>
+						<option value="Ab">Ab</option>
+						<option value="A">A</option>
+						<option value="A#">A#</option>
+						<option value="Bb">Bb</option>
+						<option value="B">B</option>
+					</select>
+				</div>
+				<div class="col-md-2 col-sm-2">
+					<input type="text" placeholder="Comments" name="comments" class="form-control js-source">
+				</div>
 
-				<br/>
-				<br/>
+				<div class="col-md-12 col-sm-12 col-xs-12">
+					<textarea name="sourceCode" class="form-control source-code" cols="30" rows="20" placeholder="ChordPlus code"></textarea>					
+				</div>
 
-				<select class="form-control select" v-model="newKey" v-on:change="parse()">
-					<option selected value="">Original key</option>
-					<option v-for="key in keys" v-bind:value="key">{{ key }}</option>
-				</select>
-				<button v-on:click="parse()" class="btn btn-primary" type="submit">Generate</button>
-				<button v-if="song.body.length" v-on:click="print()" class="btn btn-primary" type="submit">Print</button>
-			</div>
-		</form>
+				<div class="col-sm-8 col-xs-12">
+					<a class="btn btn-link col-sm-3 col-xs-12" target="_blank" href="https://ejperez.github.io/chord-plus/">Learn ChordPlus here</a>
+				</div>
+	
+				<div class="col-sm-2 col-xs-12">
+					<select name="newKey" class="form-control select col-sm-2">
+						<option value="">Original key</option>
+						<option value="C">C</option>
+						<option value="C#">C#</option>
+						<option value="Db">Db</option>
+						<option value="D">D</option>
+						<option value="D#">D#</option>
+						<option value="Eb">Eb</option>
+						<option value="E">E</option>
+						<option value="F">F</option>
+						<option value="F#">F#</option>
+						<option value="Gb">Gb</option>
+						<option value="G">G</option>
+						<option value="G#">G#</option>
+						<option value="Ab">Ab</option>
+						<option value="A">A</option>
+						<option value="A#">A#</option>
+						<option value="Bb">Bb</option>
+						<option value="B">B</option>
+					</select>
+				</div>
+	
+				<div class="col-xs-12 col-sm-2">
+					<button class="btn btn-primary col-xs-12" type="submit">Generate</button>
+				</div>				
+	
+			</form>
+		</div>
 
 		<div class="row hidden-print">
-			<div class="col-md-12">
-				<br>
-				<label for="sourceCode">Print Preview</label>
+			<div class="col-md-12 text-center">
+				<h3>Print Preview</h3>
 			</div>
-		</div>	
+		</div>
 
 		<div class="row">
 			<div class="col-md-12 song-container">
-				<h1 class="song-title">{{ song.title }}
-					<span v-if="song.artists">- {{ song.artists }}</span>
+				<h1 class="song-title">
+					<span id="js-song-title"></span> -
+					<span id="js-song-artists"></span>
 				</h1>
 
 				<div class="song-details">
-					<span>BPM: {{ song.bpm }}</span>
-					<span>Meter: {{ song.meter }}</span>
-					<span>Key: {{ song.key }}</span>
-					<span v-if="song.comment">Comment: {{ song.comment }}</span>
+					BPM:
+					<span id="js-song-bpm"></span>
+					Meter:
+					<span id="js-song-meter"></span>
+					Key:
+					<span id="js-song-key"></span>
+					Comments:
+					<span id="js-song-comments"></span>
 				</div>
 
-				<div class="song-body">
-					<template v-for="item in song.body">
+				<div id="js-song-body"></div>
+			</div>
 
-						<div v-if="item.type === 'break'"></div>
-
-						<div v-else class="song-body__item" v-bind:class="{ 'song-body__item--section': item.type === 'section' }">
-
-							<div v-if="item.type === 'section'" class="song-body__section">{{ item.value }}</div>
-
-							<div v-if="item.type !== 'section' && item.type !== 'break'" class="song-body__item-container">
-
-								<div v-if="item.type === 'chord'" class="song-body__item-content chord">
-									<div v-html="item.value" class="chord-value" ></div>
-									<div v-if="item.timing" v-html="item.timing" class="timing"></div>
-								</div>
-
-								<span v-if="item.type === 'symbol' || item.type === 'repeat'" v-html="item.value" class="song-body__item-content symbol"></span>
-
-								<span v-if="item.type === 'comment'" class="song-body__item-content comment">({{ item.value }})</span>
-
-								<span v-if="item.type === 'label'" class="song-body__item-content label">{{ item.value }}</span>
-
-								<span v-if="item.times" class="song-body__item-content repeat">x{{ item.times }}</span>
-
-								<span v-if="item.type === 'rest'" class="song-body__item-content chord">
-									<div v-html="item.timing" class="timing timing--rest"></div>
-
-							</div>
-
-						</div>
-
-					</template>
-				</div>
+			<div class="col-xs-12 col-sm-2 col-sm-offset-10 hidden-print">
+				<button class="btn btn-primary col-xs-12" type="submit" onclick="print()">Print</button>
 			</div>
 		</div>
 
