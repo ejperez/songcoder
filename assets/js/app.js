@@ -5,7 +5,7 @@ var SongCoder = {};
 
 	SongCoder.init = function () {
 
-		MobileInputHelper.init( '.visible-xs .source-code' );
+		MobileInputHelper.init( '.source-code' );
 
 		$( '#song-form' ).submit( function () {
 			var sourceCode, key, newKey, title, artists;

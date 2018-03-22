@@ -47,7 +47,11 @@ header {
         font-size: 18px;
         line-height: 25px;
         resize: none;
-        outline: none;
+		outline: none;
+		
+		@media only screen and (max-width : 767px) {
+			height: 260px;
+		}
     }
 }
 
