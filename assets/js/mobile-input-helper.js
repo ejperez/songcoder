@@ -41,6 +41,20 @@ var MobileInputHelper = {};
 			buttons += '<button class="btn btn-default js-btn-insert" type="button" value="' + value + '">' + value + '</button>';
 		} );
 
+		// Add style
+		var head = document.head || document.getElementsByTagName( 'head' )[0];
+		var css = '.js-toolbar-mobile-helper { background: #fff; height: 45px; width: 100%;} .js-toolbar-mobile-helper .buttons { overflow: auto; white-space: nowrap; text-align: center;}';
+		var style = document.createElement( 'style' );
+		style.type = 'text/css';
+
+		if ( style.styleSheet ) {
+			style.styleSheet.cssText = css;
+		} else {
+			style.appendChild( document.createTextNode( css ) );
+		}
+
+		head.appendChild( style );
+
 		// Add html
 		target.after( '<div class="text-center container-fluid js-toolbar-mobile-helper visible-xs"><div class="row"><div class="buttons col-xs-12">' + buttons + '</div></div></div><br>' );
 
