@@ -43,7 +43,7 @@ var MobileInputHelper = {};
 
 		// Add style
 		var head = document.head || document.getElementsByTagName( 'head' )[0];
-		var css = '.js-toolbar-mobile-helper { background: #fff; height: 45px; width: 100%;} .js-toolbar-mobile-helper .buttons { overflow: auto; white-space: nowrap; text-align: center;}';
+		var css = '.js-toolbar-mobile-helper { position: fixed; bottom: 0; left: 0; z-index: 1; background: #fff; visibility: hidden; height: 45px; width: 100%;} .js-toolbar-mobile-helper .buttons { overflow: auto; white-space: nowrap; text-align: center;}';
 		var style = document.createElement( 'style' );
 		style.type = 'text/css';
 
@@ -57,6 +57,17 @@ var MobileInputHelper = {};
 
 		// Add html
 		target.after( '<div class="text-center container-fluid js-toolbar-mobile-helper visible-xs"><div class="row"><div class="buttons col-xs-12">' + buttons + '</div></div></div><br>' );
+
+		var mobileHelper = $( '.js-toolbar-mobile-helper' );
+
+		// Show toolbar only if body field is visible
+		$( window ).on( 'resize scroll', function () {
+			if ( target.isInViewport() ) {
+				mobileHelper.css( 'visibility', 'visible' );
+			} else {
+				mobileHelper.css( 'visibility', 'hidden' );
+			}
+		} );
 
 		$( '.js-btn-insert' ).click( function () {
 			insertAtCursorPosition( target, $( this ).val() );
