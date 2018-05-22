@@ -9,8 +9,8 @@
     "chord-plus": "github:ejperez/chord-plus",
     "jquery": "^3.3.1",
     "jshint": "^2.9.5",
-    "node-sass": "^4.8.3",
-    "uglify-js": "^3.3.16"
+    "node-sass": "^4.9.0",
+    "uglify-js": "^3.3.26"
   },
   "scripts": {
     "build": "npm run build:js && npm run build:sass",
