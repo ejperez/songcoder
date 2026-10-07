@@ -1,0 +1,63 @@
+<div class="songcoder">
+	<%
+	for( var i=0; i < songBody.length; i++ ) {
+		var item = songBody[i];
+
+		if ( !item.type ){
+			continue;
+		}
+	%>	
+
+		<% if( item.type === 'break' ) { %>
+			<div></div>
+		<% } else { %>
+
+			<div class="songcoder__item <%- item.type === 'section' ? 'songcoder__item--section' : '' %>">
+
+				<% if( item.type === 'section' ) { %>
+					<div class="songcoder__section"><%= item.value %></div>
+				<% } %>
+
+				<div class="songcoder__item-container">
+
+					<% if( item.type === 'chord' ) { %>
+						<div class="songcoder__item-content chord">
+							<div class="chord-value"><%- item.value ? item.value : '&nbsp;' %></div>
+
+							<% if( item.timing ) { %>
+								<div class="timing"><%- item.timing %></div>
+							<% } %>
+
+						</div>
+					<% } %>
+
+					<% if( item.type === 'symbol' || item.type === 'repeat' ) { %>
+						<span class="songcoder__item-content symbol"><%= item.value %></span>
+					<% } %>
+
+					<% if( item.type === 'comment' ) { %>
+						<span class="songcoder__item-content comment"><%= item.value %></span>
+					<% } %>
+
+					<% if( item.type === 'label' ) { %>
+						<span class="songcoder__item-content label"><%= item.value %></span>
+					<% } %>
+
+					<% if( item.times ) { %>
+						<span class="songcoder__item-content repeat">x<%= item.times %></span>
+					<% } %>
+
+					<% if( item.type === 'rest' ) { %>
+						<span class="songcoder__item-content chord">
+							<div class="timing timing--rest"><%- item.timing %></div>
+						</span>
+					<% } %>
+
+				</div>
+
+			</div>
+
+		<% } %>
+		
+	<% } %>
+</div>
