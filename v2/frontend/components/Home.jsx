@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { generateChordSheet, keys } from "../../lib/main";
-import Nav from "./Nav";
 
 const demoInitialInput = `[Intro]
 [[: C:4,4,4,4 Dm | Em F | G Am Bdim :]]3
@@ -35,7 +34,6 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    console.log(outputKey);
     try {
       setHtmlOutput(generateChordSheet(code, sourceKey, outputKey));
     } catch (e) {
@@ -45,10 +43,9 @@ export default function Home() {
 
   return (
     <>
-      <Nav currentView="home" />
       <main>
-        <section className="text-center leading-relaxed my-10">
-          <h2>
+        <section className="text-center my-20">
+          <h2 className="text-lg font-bold leading-12">
             Need a professional-looking chord sheet? ChordPlus can help you with
             that.
           </h2>

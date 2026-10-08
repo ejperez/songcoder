@@ -1,11 +1,11 @@
 export default function Nav({ currentView }) {
   return (
-    <nav className="flex items-center gap-10 py-10 bg-gray-100 px-4">
+    <nav className="flex items-center gap-10 py-2 bg-black text-white px-4 print:hidden">
       <a href="index.html">
         <h1 className="text-2xl">Song Coder</h1>
       </a>
       <a
-        href="songsheetmaker.html"
+        href="song-sheet-maker.html"
         className={`${currentView === "song-sheet-maker" ? "border-b-2" : ""}`}
       >
         Song Sheet Maker
