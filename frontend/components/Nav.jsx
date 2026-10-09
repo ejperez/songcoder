@@ -2,7 +2,7 @@ export default function Nav({ currentView }) {
   return (
     <nav className="flex items-center gap-10 py-2 bg-black text-white px-4 print:hidden">
       <a href="index.html">
-        <h1 className="text-2xl">Song Coder</h1>
+        <h1 className="text-2xl">&lt; Song Coder &gt;</h1>
       </a>
       <a
         href="song-sheet-maker.html"
