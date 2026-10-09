@@ -1,0 +1,85 @@
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap");
+
+@font-face {
+  font-family: "musisync";
+  src:
+    url("../fonts/musisync.woff") format("woff"),
+    /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+      url("../fonts/musisync.ttf") format("truetype");
+  /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+}
+
+@font-face {
+  font-family: "Inconsolata";
+  font-style: normal;
+  font-weight: 400;
+  src: url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap");
+}
+
+.songcoder-code {
+  font-family: "Inconsolata", monospace;
+}
+
+.songcoder {
+  font-family: "Inconsolata", monospace;
+  margin-top: 20px;
+  &__section {
+    font-weight: bold;
+    font-size: 18px;
+  }
+  &__item {
+    display: inline-block;
+    &-container {
+      display: table;
+      min-height: 40px;
+      margin-top: -8px;
+    }
+    &-content {
+      display: table-cell;
+      vertical-align: middle;
+    }
+    .symbol {
+      font-family: musisync, serif;
+      font-size: 40px;
+      line-height: 50px;
+    }
+    .repeat {
+      padding: 8px 0 0 5px;
+      font-size: 20px;
+    }
+    .comment {
+      font-style: italic;
+    }
+    .label {
+      color: black;
+      font-size: 16px;
+      border: solid thin black;
+      padding: 0 2px 0 2px;
+    }
+    .chord {
+      font-size: 20px;
+      &-value {
+        margin-bottom: 2px;
+      }
+      .timing {
+        font-family: musisync, serif;
+        font-size: 20px;
+        line-height: 0;
+        .dot {
+          margin-left: -2px;
+        }
+      }
+      .timing--rest {
+        font-size: 25px;
+        .dot {
+          margin-left: -6px;
+        }
+      }
+    }
+  }
+  &__item--section {
+    display: block;
+    margin-bottom: -30px;
+    margin-top: 10px;
+  }
+}

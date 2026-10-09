@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-text: "Montserrat", sans-serif;
+  --font-code: "Inconsolata", monospace;
+}
+
+body {
+  @apply font-text select-none;
+}
+
+main {
+  @apply px-4;
+}
