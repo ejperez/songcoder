@@ -60,5 +60,6 @@ export default function useSongSheetMaker() {
     handleChange,
     handleSubmit,
     handlePrint,
+    setFormData,
   };
 }

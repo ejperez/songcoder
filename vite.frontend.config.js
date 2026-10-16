@@ -14,6 +14,10 @@ export default defineConfig({
       input: {
         main: resolve(import.meta.dirname, "frontend/index.html"),
         syntax: resolve(import.meta.dirname, "frontend/syntax.html"),
+        songSheetMaker: resolve(
+          import.meta.dirname,
+          "frontend/song-sheet-maker.html",
+        ),
       },
     },
   },

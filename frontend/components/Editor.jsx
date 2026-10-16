@@ -17,7 +17,7 @@ function Options({ label, values }) {
   );
 }
 
-export default function Editor({ formData, onChange, onSubmit, onPrint }) {
+export default function Editor({ formData, onChange, onSubmit }) {
   return (
     <form
       className="flex flex-col gap-2 print:hidden h-full"
