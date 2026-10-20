@@ -2,17 +2,27 @@ import { keys } from "../../lib/main";
 
 const meters = ["4/4", "3/4", "2/4", "6/8", "12/8"];
 
-function Options({ label, values }) {
+export function Options({ label, values, disabledLabel = true }) {
   return (
     <>
-      <option value="" disabled>
+      <option value="" disabled={disabledLabel}>
         {label}
       </option>
-      {values.map((value) => (
-        <option value={value} key={value}>
-          {value}
-        </option>
-      ))}
+      {values.map((value) => {
+        if (typeof value == "object") {
+          return (
+            <option value={value.value} key={value.value}>
+              {value.label}
+            </option>
+          );
+        }
+
+        return (
+          <option value={value} key={value}>
+            {value}
+          </option>
+        );
+      })}
     </>
   );
 }

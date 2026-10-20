@@ -11,11 +11,12 @@ export default function SongSheetMaker() {
     handleSubmit,
     handlePrint,
     setFormData,
+    clearFormData,
   } = useSongSheetMaker();
 
   return (
     <main>
-      <GoogleSheetsConnector {...{ formData, setFormData }} />
+      <GoogleSheetsConnector {...{ formData, setFormData, clearFormData }} />
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 h-[calc(100dvh-100px)]">
         <Editor
           formData={formData}

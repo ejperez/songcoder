@@ -19,18 +19,23 @@ export default function useGoogleSheetsApi() {
       throw new Error(result.message || "Invalid API response.");
     }
 
-    console.log(result);
+    const parsedResult = result.map((item) => {
+      return {
+        id: item.id,
+        data: JSON.parse(item.data),
+      };
+    });
 
-    return result;
+    return parsedResult;
   }
 
-  async function postData(data) {
+  async function postData(data, action = "", id = "") {
     const response = await fetch(apiUrlRef.current, {
       method: "POST",
       headers: {
         "Content-Type": "text/plain;charset=utf-8",
       },
-      body: JSON.stringify({ data }),
+      body: JSON.stringify({ data: { data }, action, id }),
     });
 
     if (!response.ok) {
@@ -47,7 +52,7 @@ export default function useGoogleSheetsApi() {
   }
 
   async function insertEntry(data) {
-    return postData({ data: JSON.stringify(data) });
+    return postData(JSON.stringify(data));
   }
 
   async function updateEntry(id, data) {
@@ -55,11 +60,7 @@ export default function useGoogleSheetsApi() {
       throw new Error("An ID is required to update an entry.");
     }
 
-    return postData({
-      action: "update",
-      id,
-      data: JSON.stringify(data),
-    });
+    return postData(JSON.stringify(data), "update", id);
   }
 
   return {

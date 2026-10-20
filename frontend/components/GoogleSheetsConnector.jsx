@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import useGoogleSheetsApi from "../hooks/useGoogleSheetsApi";
-import Select from "react-select";
+import { Options } from "./Editor";
 
 function GoogleSheetsModal({
   apiUrlRef,
@@ -91,38 +91,97 @@ function GoogleSheetsModal({
   );
 }
 
-export default function GoogleSheetsConnector({ formData, setFormData }) {
+export default function GoogleSheetsConnector({
+  formData,
+  setFormData,
+  clearFormData,
+}) {
+  const [currentId, setCurrentId] = useState("");
   const [entries, setEntries] = useState([]);
   const [isConnected, setIsConnected] = useState(false);
   const [isConnectModalShown, setIsConnectModalShown] = useState(false);
-  const { apiUrlRef, getEntries, insertEntry } = useGoogleSheetsApi();
+  const { apiUrlRef, getEntries, insertEntry, updateEntry } =
+    useGoogleSheetsApi();
+  const songSelectRef = useRef(null);
 
   function disconnect() {
     apiUrlRef.current = null;
+    setCurrentId("");
     setEntries([]);
     setError("");
     setIsConnected(false);
   }
+
+  function handleLoad() {
+    const selectedId = songSelectRef.current.value;
+
+    setCurrentId(selectedId);
+
+    const selectedSong = entries.filter(
+      (entry) => entry.id === songSelectRef.current.value,
+    );
+
+    if (!selectedSong.length) return;
+
+    setFormData(selectedSong[0].data);
+  }
+
+  function handleSave() {
+    if (currentId === "") {
+      insertEntry(formData);
+    } else {
+      updateEntry(currentId, formData);
+    }
+  }
+
+  function handleNew() {
+    setCurrentId("");
+    clearFormData();
+  }
+
+  const options = entries.map((entry) => ({
+    value: entry.id,
+    label: entry.data.title,
+  }));
 
   return (
     <div>
       {isConnected ? (
         <div className="flex justify-between">
           <div className="flex gap-2">
+            <div className="flex items-center">
+              <select
+                className="border px-2 min-w-60 h-[26px]"
+                name="meter"
+                ref={songSelectRef}
+              >
+                <Options
+                  label="<Your songs>"
+                  values={options}
+                  disabledLabel={false}
+                />
+              </select>
+            </div>
             <button
               className="border border-black my-2 cursor-pointer px-4"
               type="button"
+              onClick={handleLoad}
             >
               Load
             </button>
             <button
               className="border border-black my-2 cursor-pointer px-4"
               type="button"
-              onClick={() => {
-                insertEntry(formData);
-              }}
+              onClick={handleSave}
             >
               Save
+            </button>
+            <button
+              className="border border-black my-2 cursor-pointer px-4"
+              type="button"
+              onClick={handleNew}
+            >
+              New
             </button>
           </div>
           <div>

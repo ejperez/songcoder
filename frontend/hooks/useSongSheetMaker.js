@@ -35,6 +35,10 @@ export default function useSongSheetMaker() {
     window.print();
   };
 
+  function clearFormData() {
+    setFormData({ ...initialFormData });
+  }
+
   useEffect(() => {
     try {
       setHtmlOutput(
@@ -61,5 +65,6 @@ export default function useSongSheetMaker() {
     handleSubmit,
     handlePrint,
     setFormData,
+    clearFormData,
   };
 }
