@@ -12,7 +12,7 @@ function GoogleSheetsModal({
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  async function handleConnect(event) {
+  const handleConnect = async (event) => {
     event.preventDefault();
 
     const formData = new FormData(event.target);
@@ -45,7 +45,7 @@ function GoogleSheetsModal({
     } finally {
       setLoading(false);
     }
-  }
+  };
 
   return (
     <div className="flex justify-center items-center fixed inset-0 bg-black/20">
@@ -104,15 +104,15 @@ export default function GoogleSheetsConnector({
     useGoogleSheetsApi();
   const songSelectRef = useRef(null);
 
-  function disconnect() {
+  const disconnect = () => {
     apiUrlRef.current = null;
     setCurrentId("");
     setEntries([]);
     setError("");
     setIsConnected(false);
-  }
+  };
 
-  function handleLoad() {
+  const handleLoad = () => {
     const selectedId = songSelectRef.current.value;
 
     setCurrentId(selectedId);
@@ -124,20 +124,20 @@ export default function GoogleSheetsConnector({
     if (!selectedSong.length) return;
 
     setFormData(selectedSong[0].data);
-  }
+  };
 
-  function handleSave() {
+  const handleSave = () => {
     if (currentId === "") {
       insertEntry(formData);
     } else {
       updateEntry(currentId, formData);
     }
-  }
+  };
 
-  function handleNew() {
+  const handleNew = () => {
     setCurrentId("");
     clearFormData();
-  }
+  };
 
   const options = entries.map((entry) => ({
     value: entry.id,

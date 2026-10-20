@@ -35,9 +35,9 @@ export default function useSongSheetMaker() {
     window.print();
   };
 
-  function clearFormData() {
+  const clearFormData = () => {
     setFormData({ ...initialFormData });
-  }
+  };
 
   useEffect(() => {
     try {
