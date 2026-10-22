@@ -104,11 +104,10 @@ export default function GoogleSheetsConnector({
     useGoogleSheetsApi();
   const songSelectRef = useRef(null);
 
-  const disconnect = () => {
+  const handleDisconnect = () => {
     apiUrlRef.current = null;
     setCurrentId("");
     setEntries([]);
-    setError("");
     setIsConnected(false);
   };
 
@@ -126,9 +125,10 @@ export default function GoogleSheetsConnector({
     setFormData(selectedSong[0].data);
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     if (currentId === "") {
-      insertEntry(formData);
+      const { id } = await insertEntry(formData);
+      setCurrentId(id);
     } else {
       updateEntry(currentId, formData);
     }
@@ -137,6 +137,7 @@ export default function GoogleSheetsConnector({
   const handleNew = () => {
     setCurrentId("");
     clearFormData();
+    songSelectRef.current.value = "";
   };
 
   const options = entries.map((entry) => ({
@@ -156,7 +157,7 @@ export default function GoogleSheetsConnector({
                 ref={songSelectRef}
               >
                 <Options
-                  label="<Your songs>"
+                  label="<New song>"
                   values={options}
                   disabledLabel={false}
                 />
@@ -188,6 +189,7 @@ export default function GoogleSheetsConnector({
             <button
               className="border border-black my-2 cursor-pointer px-4"
               type="button"
+              onClick={handleDisconnect}
             >
               Disconnect
             </button>
