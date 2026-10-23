@@ -17,7 +17,7 @@ export default function PrintPreview({ formData, htmlOutput, onPrint }) {
       <div className="flex gap-10 text-xs mt-1">
         <div>BPM: {formData.bpm}</div>
         <div>Meter: {formData.meter}</div>
-        <div>Key: {formData.key}</div>
+        <div>Key: {formData.outputKey}</div>
         <div>Comments: {formData.comments}</div>
       </div>
       <div

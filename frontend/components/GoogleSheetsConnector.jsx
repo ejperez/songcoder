@@ -1,6 +1,6 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
+import Select from "react-select";
 import useGoogleSheetsApi from "../hooks/useGoogleSheetsApi";
-import { Options } from "./Editor";
 
 function GoogleSheetsModal({
   apiUrlRef,
@@ -97,32 +97,31 @@ export default function GoogleSheetsConnector({
   clearFormData,
 }) {
   const [currentId, setCurrentId] = useState("");
+  const [selectedOption, setSelectedOption] = useState(null);
   const [entries, setEntries] = useState([]);
   const [isConnected, setIsConnected] = useState(false);
   const [isConnectModalShown, setIsConnectModalShown] = useState(false);
   const { apiUrlRef, getEntries, insertEntry, updateEntry } =
     useGoogleSheetsApi();
-  const songSelectRef = useRef(null);
 
   const handleDisconnect = () => {
     apiUrlRef.current = null;
     setCurrentId("");
+    setSelectedOption(null);
     setEntries([]);
     setIsConnected(false);
   };
 
   const handleLoad = () => {
-    const selectedId = songSelectRef.current.value;
+    const selectedId = selectedOption?.value ?? "";
 
     setCurrentId(selectedId);
 
-    const selectedSong = entries.filter(
-      (entry) => entry.id === songSelectRef.current.value,
-    );
+    const selectedSong = entries.find((entry) => entry.id === selectedId);
 
-    if (!selectedSong.length) return;
+    if (!selectedSong) return;
 
-    setFormData(selectedSong[0].data);
+    setFormData(selectedSong.data);
   };
 
   const handleSave = async () => {
@@ -137,7 +136,7 @@ export default function GoogleSheetsConnector({
   const handleNew = () => {
     setCurrentId("");
     clearFormData();
-    songSelectRef.current.value = "";
+    setSelectedOption(null);
   };
 
   const options = entries.map((entry) => ({
@@ -145,23 +144,74 @@ export default function GoogleSheetsConnector({
     label: entry.data.title,
   }));
 
+  const selectStyles = {
+    control: (baseStyles) => ({
+      ...baseStyles,
+      borderRadius: 0,
+      borderColor: "black",
+      boxShadow: "none",
+      height: 26,
+      minHeight: 26,
+      "&:hover": {
+        borderColor: "black",
+      },
+    }),
+    valueContainer: (baseStyles) => ({
+      ...baseStyles,
+      padding: "0 8px",
+    }),
+    singleValue: (baseStyles) => ({
+      ...baseStyles,
+      margin: 0,
+    }),
+    placeholder: (baseStyles) => ({
+      ...baseStyles,
+      color: "black",
+    }),
+    indicatorsContainer: (baseStyles) => ({
+      ...baseStyles,
+      height: 24,
+    }),
+    dropdownIndicator: (baseStyles) => ({
+      ...baseStyles,
+      padding: "0 6px",
+      color: "black",
+    }),
+    indicatorSeparator: () => ({
+      display: "none",
+    }),
+    option: (baseStyles, state) => ({
+      ...baseStyles,
+      backgroundColor: state.isSelected
+        ? "#2684FF"
+        : state.isFocused
+          ? "#f6f3f4"
+          : "white",
+      color: state.isSelected ? "white" : "#333",
+      cursor: "pointer",
+    }),
+    input: (provided) => ({
+      ...provided,
+      margin: 0,
+      padding: 0,
+    }),
+  };
+
   return (
     <div>
       {isConnected ? (
         <div className="flex justify-between">
           <div className="flex gap-2">
             <div className="flex items-center">
-              <select
-                className="border px-2 min-w-60 h-[26px]"
-                name="meter"
-                ref={songSelectRef}
-              >
-                <Options
-                  label="<New song>"
-                  values={options}
-                  disabledLabel={false}
-                />
-              </select>
+              <Select
+                aria-label="Select a song"
+                className="min-w-60"
+                options={options}
+                placeholder="<New song>"
+                value={selectedOption}
+                onChange={setSelectedOption}
+                styles={selectStyles}
+              />
             </div>
             <button
               className="border border-black my-2 cursor-pointer px-4"
