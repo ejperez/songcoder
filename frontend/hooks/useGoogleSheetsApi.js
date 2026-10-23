@@ -19,12 +19,14 @@ export default function useGoogleSheetsApi() {
       throw new Error(result.message || "Invalid API response.");
     }
 
-    const parsedResult = result.map((item) => {
-      return {
-        id: item.id,
-        data: JSON.parse(item.data),
-      };
-    });
+    const parsedResult = result
+      .map((item) => {
+        return {
+          id: item.id,
+          data: JSON.parse(item.data),
+        };
+      })
+      .sort((a, b) => a.data.title.localeCompare(b.data.title));
 
     return parsedResult;
   }

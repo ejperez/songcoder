@@ -139,9 +139,15 @@ export default function GoogleSheetsConnector({
     setSelectedOption(null);
   };
 
+  const handleRefresh = async () => {
+    const data = await getEntries();
+
+    setEntries(data);
+  };
+
   const options = entries.map((entry) => ({
     value: entry.id,
-    label: entry.data.title,
+    label: `${entry.data.title} - ${entry.data.artist}`,
   }));
 
   const selectStyles = {
@@ -213,6 +219,13 @@ export default function GoogleSheetsConnector({
                 styles={selectStyles}
               />
             </div>
+            <button
+              className="border border-black my-2 cursor-pointer px-4"
+              type="button"
+              onClick={handleRefresh}
+            >
+              Refresh
+            </button>
             <button
               className="border border-black my-2 cursor-pointer px-4"
               type="button"
