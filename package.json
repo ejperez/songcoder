@@ -3,24 +3,10 @@
   "version": "2.0.0",
   "private": false,
   "type": "module",
-  "files": [
-    "dist"
-  ],
-  "main": "./dist/songcoder.umd.js",
-  "module": "./dist/songcoder.es.js",
-  "exports": {
-    ".": {
-      "import": "./dist/songcoder.es.js",
-      "require": "./dist/songcoder.umd.js",
-      "types": "./dist/songcoder.d.ts"
-    },
-    "./css": "./dist/songcoder.css"
-  },
   "scripts": {
     "dev": "vite --config vite.frontend.config.js",
-    "build": "vite build && cp lib/main.d.ts dist/songcoder.d.ts",
-    "build:fe": "vite build --config vite.frontend.config.js",
-    "deploy:fe": "npm run build:fe && gh-pages -d frontend/dist",
+    "build": "vite build --config vite.frontend.config.js",
+    "deploy": "npm run build:fe && gh-pages -d frontend/dist",
     "preview": "vite preview",
     "test": "node --test"
   },

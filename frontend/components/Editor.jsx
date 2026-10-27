@@ -30,10 +30,10 @@ export function Options({ label, values, disabledLabel = true }) {
 export default function Editor({ formData, onChange, onSubmit }) {
   return (
     <form
-      className="flex flex-col gap-2 print:hidden h-full"
+      className="flex flex-col gap-2 print:hidden h-full p-2 bg-gradient-to-b from-[#7a96df] to-[#607aec]
+"
       onSubmit={onSubmit}
     >
-      <h2 className="text-lg leading-10">Editor</h2>
       <div className="flex justify-between gap-2">
         <input
           className="bg-gray-100 p-2 w-full"

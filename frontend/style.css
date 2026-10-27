@@ -10,6 +10,10 @@ body {
   @apply font-text select-none;
 }
 
-main {
-  @apply px-4;
+.btn {
+  @apply px-2 py-0.5 text-sm cursor-pointer bg-gradient-to-b from-[#2572f4] via-[#104ec3] to-[#1253cd] hover:from-[#498bf7] hover:to-[#175ee3] active:from-[#0b3891] active:to-[#0f44ad] border border-[#0d3ea1] rounded-[3px] shadow-[inset_1px_1px_1px_rgba(255,255,255,0.4)];
+
+  &.btn--danger {
+    @apply p-1 cursor-pointer bg-gradient-to-b from-[#e7613b] via-[#ba2a0a] to-[#ca3a14] hover:from-[#f38b6d] hover:to-[#cf3c18] active:from-[#8e1902] active:to-[#aa2205] border border-[#7e1500] rounded-[3px] shadow-[inset_1px_1px_1px_rgba(255,255,255,0.5),0_1px_1px_rgba(0,0,0,0.2)];
+  }
 }

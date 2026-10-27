@@ -1,16 +1,6 @@
-export default function PrintPreview({ formData, htmlOutput, onPrint }) {
+export default function PrintPreview({ formData, htmlOutput }) {
   return (
-    <div className="overflow-auto">
-      <div className="flex justify-between print:hidden">
-        <h2 className="text-lg leading-10">Print Preview</h2>
-        <button
-          type="button"
-          onClick={onPrint}
-          className="bg-black text-white w-20 my-2 cursor-pointer"
-        >
-          Print
-        </button>
-      </div>
+    <div className="overflow-auto bg-white p-2">
       <div className="text-2xl font-code font-normal border-b">
         {formData.title} - {formData.artist}
       </div>

@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Select from "react-select";
 import useGoogleSheetsApi from "../hooks/useGoogleSheetsApi";
+import { AppContext } from "./App";
 
 function GoogleSheetsModal({
   apiUrlRef,
@@ -48,7 +49,7 @@ function GoogleSheetsModal({
   };
 
   return (
-    <div className="flex justify-center items-center fixed inset-0 bg-black/20">
+    <div className="flex justify-center items-center fixed inset-0 bg-black/20 text-black">
       <div className="relative bg-white p-2 w-1/2 text-center rounded-sm">
         <h2 className="font-bold text-lg mb-10">Connect to Google Sheets</h2>
         <form onSubmit={handleConnect}>
@@ -91,11 +92,9 @@ function GoogleSheetsModal({
   );
 }
 
-export default function GoogleSheetsConnector({
-  formData,
-  setFormData,
-  clearFormData,
-}) {
+export default function GoogleSheetsConnector() {
+  const { formData, setFormData, clearFormData, handlePrint } =
+    useContext(AppContext);
   const [currentId, setCurrentId] = useState("");
   const [selectedOption, setSelectedOption] = useState(null);
   const [entries, setEntries] = useState([]);
@@ -153,7 +152,7 @@ export default function GoogleSheetsConnector({
   const selectStyles = {
     control: (baseStyles) => ({
       ...baseStyles,
-      borderRadius: 0,
+      borderRadius: "3px",
       borderColor: "black",
       boxShadow: "none",
       height: 26,
@@ -205,73 +204,67 @@ export default function GoogleSheetsConnector({
 
   return (
     <div>
-      {isConnected ? (
-        <div className="flex justify-between">
-          <div className="flex gap-2">
-            <div className="flex items-center">
-              <Select
-                aria-label="Select a song"
-                className="min-w-60"
-                options={options}
-                placeholder="<New song>"
-                value={selectedOption}
-                onChange={setSelectedOption}
-                styles={selectStyles}
-              />
+      <div className="flex justify-between gap-3">
+        {isConnected && (
+          <>
+            <div className="flex gap-2">
+              <div className="flex items-center">
+                <Select
+                  aria-label="Select a song"
+                  className="min-w-60"
+                  options={options}
+                  placeholder="<New song>"
+                  value={selectedOption}
+                  onChange={setSelectedOption}
+                  styles={selectStyles}
+                />
+              </div>
+              <button className="btn" type="button" onClick={handleRefresh}>
+                Refresh
+              </button>
+              <button className="btn" type="button" onClick={handleLoad}>
+                Load
+              </button>
+              <button className="btn" type="button" onClick={handleSave}>
+                Save
+              </button>
+              <button className="btn" type="button" onClick={handleNew}>
+                New
+              </button>
             </div>
-            <button
-              className="border border-black my-2 cursor-pointer px-4"
-              type="button"
-              onClick={handleRefresh}
-            >
-              Refresh
-            </button>
-            <button
-              className="border border-black my-2 cursor-pointer px-4"
-              type="button"
-              onClick={handleLoad}
-            >
-              Load
-            </button>
-            <button
-              className="border border-black my-2 cursor-pointer px-4"
-              type="button"
-              onClick={handleSave}
-            >
-              Save
-            </button>
-            <button
-              className="border border-black my-2 cursor-pointer px-4"
-              type="button"
-              onClick={handleNew}
-            >
-              New
-            </button>
-          </div>
-          <div>
-            <button
-              className="border border-black my-2 cursor-pointer px-4"
-              type="button"
-              onClick={handleDisconnect}
-            >
-              Disconnect
-            </button>
-          </div>
-        </div>
-      ) : (
-        <div className="text-sm">
+          </>
+        )}
+
+        <button
+          type="button"
+          onClick={handlePrint}
+          className="btn"
+          title="Print"
+        >
+          🖨️ Print
+        </button>
+
+        {isConnected ? (
+          <button
+            className="btn btn--danger"
+            type="button"
+            onClick={handleDisconnect}
+          >
+            ❌ Disconnect
+          </button>
+        ) : (
           <button
             type="button"
             onClick={() => {
               setIsConnectModalShown(true);
             }}
-            className="my-2 cursor-pointer underline"
+            className="btn"
+            title="Connect to Google Sheets"
           >
-            Connect to Google Sheets
-          </button>{" "}
-          to load and save your song sheets.
-        </div>
-      )}
+            🛜 Connect
+          </button>
+        )}
+      </div>
 
       {isConnectModalShown && (
         <GoogleSheetsModal

@@ -1,9 +1,12 @@
+import useSongSheetMaker from "../hooks/useSongSheetMaker";
 import Editor from "./Editor";
 import PrintPreview from "./PrintPreview";
-import useSongSheetMaker from "../hooks/useSongSheetMaker";
-import GoogleSheetsConnector from "./GoogleSheetsConnector";
+import Header from "./Header";
+import { createContext } from "react";
 
-export default function SongSheetMaker() {
+export const AppContext = createContext({});
+
+export default function App() {
   const {
     formData,
     htmlOutput,
@@ -15,9 +18,16 @@ export default function SongSheetMaker() {
   } = useSongSheetMaker();
 
   return (
-    <main>
-      <GoogleSheetsConnector {...{ formData, setFormData, clearFormData }} />
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 h-[calc(100dvh-100px)]">
+    <AppContext
+      value={{
+        formData,
+        setFormData,
+        clearFormData,
+        handlePrint,
+      }}
+    >
+      <Header currentView="song-sheet-maker" />
+      <main className="grid grid-cols-1 lg:grid-cols-2 gap-2 h-[calc(100dvh-49px)]">
         <Editor
           formData={formData}
           onChange={handleChange}
@@ -28,7 +38,7 @@ export default function SongSheetMaker() {
           htmlOutput={htmlOutput}
           onPrint={handlePrint}
         />
-      </div>
-    </main>
+      </main>
+    </AppContext>
   );
 }
