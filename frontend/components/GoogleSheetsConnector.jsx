@@ -1,96 +1,8 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import Select from "react-select";
 import useGoogleSheetsApi from "../hooks/useGoogleSheetsApi";
 import { AppContext } from "./App";
-
-function GoogleSheetsModal({
-  apiUrlRef,
-  setEntries,
-  getEntries,
-  setIsConnected,
-  setIsConnectModalShown,
-}) {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-
-  const handleConnect = async (event) => {
-    event.preventDefault();
-
-    const formData = new FormData(event.target);
-    const { url } = Object.fromEntries(formData.entries());
-
-    if (
-      !/^https:\/\/script\.google\.com\/macros\/s\/[^/]+\/exec\/?$/.test(url)
-    ) {
-      setError("Enter a valid Google Apps Script Web App URL.");
-      return;
-    }
-
-    apiUrlRef.current = url;
-    setLoading(true);
-    setError("");
-
-    try {
-      const data = await getEntries();
-
-      setEntries(data);
-      setIsConnected(true);
-      setIsConnectModalShown(false);
-    } catch (err) {
-      apiUrlRef.current = null;
-      setEntries([]);
-      setError(
-        `Unable to connect: ${err.message}. Check the URL, deployment access, and CORS settings.`,
-      );
-      setIsConnected(false);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  return (
-    <div className="flex justify-center items-center fixed inset-0 bg-black/20 text-black">
-      <div className="relative bg-white p-2 w-1/2 text-center rounded-sm">
-        <h2 className="font-bold text-lg mb-10">Connect to Google Sheets</h2>
-        <form onSubmit={handleConnect}>
-          <label htmlFor="apiUrl">Apps Script Web App URL</label>
-          <br />
-
-          <input
-            name="url"
-            type="url"
-            placeholder="https://script.google.com/macros/s/.../exec"
-            required
-            className="w-3/4 bg-gray-100 p-2"
-          />
-          <br />
-
-          <div className="mt-10 flex gap-2 justify-center">
-            <button
-              className=" bg-black text-white my-2 cursor-pointer px-4"
-              type="submit"
-              disabled={loading}
-            >
-              {loading ? "Connecting..." : "Connect"}
-            </button>
-
-            <button
-              className="border border-black my-2 cursor-pointer px-4"
-              onClick={() => {
-                setIsConnectModalShown(false);
-              }}
-              type="button"
-              disabled={loading}
-            >
-              Cancel
-            </button>
-          </div>
-        </form>
-        {error}
-      </div>
-    </div>
-  );
-}
+import GoogleSheetsModal from "./GoogleSheetsModal";
 
 export default function GoogleSheetsConnector() {
   const { formData, setFormData, clearFormData, handlePrint } =
@@ -99,9 +11,29 @@ export default function GoogleSheetsConnector() {
   const [selectedOption, setSelectedOption] = useState(null);
   const [entries, setEntries] = useState([]);
   const [isConnected, setIsConnected] = useState(false);
+  const [isFetchingEntries, setIsFetchingEntries] = useState(false);
   const [isConnectModalShown, setIsConnectModalShown] = useState(false);
   const { apiUrlRef, getEntries, insertEntry, updateEntry } =
     useGoogleSheetsApi();
+
+  useEffect(() => {
+    if (!("localStorage" in window)) return;
+
+    const getInitialEntries = async () => {
+      apiUrlRef.current = window.localStorage.getItem("app_script_url");
+      setIsFetchingEntries(true);
+      try {
+        const data = await getEntries();
+        setEntries(data);
+        setIsConnected(true);
+      } catch (e) {
+      } finally {
+        setIsFetchingEntries(false);
+      }
+    };
+
+    getInitialEntries();
+  }, []);
 
   const handleDisconnect = () => {
     apiUrlRef.current = null;
@@ -109,6 +41,9 @@ export default function GoogleSheetsConnector() {
     setSelectedOption(null);
     setEntries([]);
     setIsConnected(false);
+    if ("localStorage" in window) {
+      window.localStorage.removeItem("app_script_url");
+    }
   };
 
   const handleLoad = () => {
@@ -205,64 +140,70 @@ export default function GoogleSheetsConnector() {
   return (
     <div>
       <div className="flex justify-between gap-3">
-        {isConnected && (
-          <>
-            <div className="flex gap-2">
-              <div className="flex items-center">
-                <Select
-                  aria-label="Select a song"
-                  className="min-w-60"
-                  options={options}
-                  placeholder="<New song>"
-                  value={selectedOption}
-                  onChange={setSelectedOption}
-                  styles={selectStyles}
-                />
-              </div>
-              <button className="btn" type="button" onClick={handleRefresh}>
-                Refresh
-              </button>
-              <button className="btn" type="button" onClick={handleLoad}>
-                Load
-              </button>
-              <button className="btn" type="button" onClick={handleSave}>
-                Save
-              </button>
-              <button className="btn" type="button" onClick={handleNew}>
-                New
-              </button>
-            </div>
-          </>
-        )}
-
-        <button
-          type="button"
-          onClick={handlePrint}
-          className="btn"
-          title="Print"
-        >
-          🖨️ Print
-        </button>
-
-        {isConnected ? (
-          <button
-            className="btn btn--danger"
-            type="button"
-            onClick={handleDisconnect}
-          >
-            ❌ Disconnect
-          </button>
+        {isFetchingEntries ? (
+          <div>🎶 Fetching songs...</div>
         ) : (
-          <button
-            type="button"
-            onClick={() => {
-              setIsConnectModalShown(true);
-            }}
-            className="btn"
-            title="Connect to Google Sheets"
-          >
-            🛜 Connect
-          </button>
+          <>
+            {isConnected && (
+              <>
+                <div className="flex gap-2">
+                  <div className="flex items-center">
+                    <Select
+                      aria-label="Select a song"
+                      className="min-w-60"
+                      options={options}
+                      placeholder="<New song>"
+                      value={selectedOption}
+                      onChange={setSelectedOption}
+                      styles={selectStyles}
+                    />
+                  </div>
+                  <button className="btn" type="button" onClick={handleRefresh}>
+                    Refresh
+                  </button>
+                  <button className="btn" type="button" onClick={handleLoad}>
+                    Load
+                  </button>
+                  <button className="btn" type="button" onClick={handleSave}>
+                    Save
+                  </button>
+                  <button className="btn" type="button" onClick={handleNew}>
+                    New
+                  </button>
+                </div>
+              </>
+            )}
+
+            <button
+              type="button"
+              onClick={handlePrint}
+              className="btn"
+              title="Print"
+            >
+              🖨️ Print
+            </button>
+
+            {isConnected ? (
+              <button
+                className="btn btn--danger"
+                type="button"
+                onClick={handleDisconnect}
+              >
+                ❌ Disconnect
+              </button>
+            ) : (
+              <button
+                type="button"
+                onClick={() => {
+                  setIsConnectModalShown(true);
+                }}
+                className="btn"
+                title="Connect to Google Sheets"
+              >
+                🛜 Connect
+              </button>
+            )}
+          </>
         )}
       </div>
 
